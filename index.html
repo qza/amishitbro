@@ -158,26 +158,6 @@
       padding: 40px 24px;
     }
 
-    .archetype-shape {
-      width: 100px;
-      height: 100px;
-      margin: 0 auto 24px;
-    }
-
-    .shape-circle   { border-radius: 50%; }
-    .shape-blob     { border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%; }
-    .shape-crescent { clip-path: path('M 50 0 A 50 50 0 1 0 50 100 A 30 30 0 1 1 50 0 Z'); }
-    .shape-diamond  { clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); }
-    .shape-triangle { clip-path: polygon(50% 0%, 0% 100%, 100% 100%); }
-    .shape-polygon  { clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 90% 70%, 60% 100%, 40% 100%, 10% 70%, 0% 30%); }
-
-    .archetype-name {
-      font-size: 1.6rem;
-      font-weight: 900;
-      letter-spacing: 0.06em;
-      margin-bottom: 6px;
-    }
-
     .score-line {
       color: #7bf1a8;
       font-size: 0.8rem;
@@ -186,34 +166,24 @@
       margin-bottom: 20px;
     }
 
-    .taglines {
-      list-style: none;
-      margin-bottom: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
+    .result-headline {
+      font-size: clamp(1.3rem, 6vw, 1.9rem);
+      font-weight: 900;
+      color: #fff;
+      text-align: center;
+      line-height: 1.3;
+      margin-bottom: 8px;
     }
-    .taglines li { color: #aaa; font-size: 0.9rem; line-height: 1.4; }
-
-    .taste-section {
-      width: 100%;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid #2a2a3e;
-      border-radius: 12px;
-      padding: 16px;
-      margin-bottom: 28px;
-      text-align: left;
+    .result-label {
+      color: #e96fff;
     }
-    .taste-section h3 {
-      font-size: 0.65rem;
-      letter-spacing: 0.12em;
+    .result-score-sub {
       color: #555;
-      margin-bottom: 10px;
-      text-transform: uppercase;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-align: center;
+      margin-bottom: 24px;
     }
-    .taste-row { display: flex; gap: 8px; margin-bottom: 6px; font-size: 0.82rem; }
-    .taste-label { color: #666; min-width: 64px; flex-shrink: 0; }
-    .taste-value { color: #ccc; }
 
     .result-actions {
       display: flex;
@@ -317,13 +287,6 @@
       flex-direction: column;
       align-items: center;
       margin: 20px 0 8px;
-    }
-    .shit-badge-caption {
-      color: #555;
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-top: 8px;
     }
 
     /* Closing screen — scenes */
@@ -682,40 +645,18 @@
 
   <!-- Screen 3: Result (populated by JS) -->
   <section id="screen-result" class="screen">
-    <div class="archetype-shape" id="result-shape"></div>
-    <h2 class="archetype-name" id="result-name"></h2>
-    <p class="score-line" id="result-score"></p>
-    <ul class="taglines" id="result-taglines">
-      <li id="tagline-0"></li>
-      <li id="tagline-1"></li>
-      <li id="tagline-2"></li>
-    </ul>
-    <div class="taste-section">
-      <h3>what it's like...</h3>
-      <div class="taste-row">
-        <span class="taste-label">as a friend</span>
-        <span class="taste-value" id="taste-friend"></span>
-      </div>
-      <div class="taste-row">
-        <span class="taste-label">at work</span>
-        <span class="taste-value" id="taste-work"></span>
-      </div>
-      <div class="taste-row">
-        <span class="taste-label">to date</span>
-        <span class="taste-value" id="taste-date"></span>
-      </div>
+    <p class="result-headline" id="result-headline"></p>
+    <div class="shit-badge-wrap" style="margin: 12px 0 16px;">
+      <canvas id="result-shit-icon"></canvas>
     </div>
+    <p class="result-score-sub" id="result-score"></p>
     <div class="result-actions">
-      <button class="btn-save" onclick="downloadCard()">⬇ save card</button>
+      <button class="btn-save" onclick="downloadCard()">&#8595; save card</button>
       <button class="btn-retake" onclick="startQuiz()">retake</button>
     </div>
-    <button class="btn-sowhat" onclick="showScreen('screen-closing')">so what? →</button>
-    <div class="shit-badge-wrap">
-      <canvas id="result-shit-icon"></canvas>
-      <p class="shit-badge-caption">your shit level</p>
-    </div>
+    <button class="btn-sowhat" onclick="showScreen('screen-closing')">so what? &#8594;</button>
     <a class="donate-link" href="https://ko-fi.com/kokozoo" target="_blank" rel="noopener">
-      ☕ if this hit too hard, buy me a coffee
+      &#9749; if this hit too hard, buy me a coffee
     </a>
   </section>
 
@@ -1008,109 +949,6 @@
       },
     ];
 
-    const ARCHETYPES = [
-      {
-        name: "THE DECENT ONE",
-        min: -10, max: 2,
-        color: "#7bf1a8",
-        shape: "circle",
-        taglines: [
-          "wait, you're actually okay? 🤔",
-          "your friends genuinely like you back",
-          "rare species tbh, don't waste it"
-        ],
-        tastes: {
-          friend: "weirdly reliable, refreshing",
-          work: "the one who actually follows through",
-          date: "boring in the best way possible"
-        }
-      },
-      {
-        name: "THE FLAKE",
-        min: 3, max: 8,
-        color: "#a8e063",
-        shape: "blob",
-        taglines: [
-          "loveable but you can't count on them 🫠",
-          "3 'omw' texts and still 40 mins away",
-          "good intentions, chaotic execution"
-        ],
-        tastes: {
-          friend: "fun when they show up",
-          work: "perpetually 'almost done'",
-          date: "exciting until they vanish for a week"
-        }
-      },
-      {
-        name: "THE GHOST",
-        min: 9, max: 14,
-        color: "#4ecdc4",
-        shape: "crescent",
-        taglines: [
-          "present but not really there 👻",
-          "people wonder if they imagined you",
-          "your read receipts say more than you do"
-        ],
-        tastes: {
-          friend: "low maintenance but also just... low",
-          work: "shows up, contributes nothing, disappears",
-          date: "emotionally unavailable starter pack"
-        }
-      },
-      {
-        name: "THE LEECH",
-        min: 15, max: 19,
-        color: "#e96fff",
-        shape: "diamond",
-        taglines: [
-          "takes more than it gives 🩸",
-          "your friends are tired but too nice to say",
-          "energy vampire with good vibes as cover"
-        ],
-        tastes: {
-          friend: "draining after 2 hours",
-          work: "great at delegating their own work",
-          date: "their needs > your needs, always"
-        }
-      },
-      {
-        name: "THE VOLCANO",
-        min: 20, max: 24,
-        color: "#ff6b6b",
-        shape: "triangle",
-        taglines: [
-          "spicy to be around 🌶️",
-          "your friends text in group chats about u",
-          "a walking red flag parade tbh"
-        ],
-        tastes: {
-          friend: "exhausting but never boring",
-          work: "the one who derails standups",
-          date: "a rollercoaster with no seatbelt"
-        }
-      },
-      {
-        name: "THE CHAOS AGENT",
-        min: 25, max: 30,
-        color: "#ff9a3c",
-        shape: "polygon",
-        taglines: [
-          "pure entropy, certified shit 💀",
-          "you leave situations worse than you found them",
-          "people recover from knowing you"
-        ],
-        tastes: {
-          friend: "a trauma bond waiting to happen",
-          work: "HR has a folder with your name on it",
-          date: "therapy material, no cap"
-        }
-      }
-    ];
-
-    function getArchetype(s) {
-      return ARCHETYPES.find(a => s >= a.min && s <= a.max);
-    }
-
     let currentQ = 0;
     let score = 0;
 
@@ -1292,141 +1130,98 @@
       document.getElementById(id).classList.add('active');
     }
 
+    var SHIT_TIERS = [
+      // max: 2 also covers negative scores (finaliseScore clamps to -10..30)
+      { max:  2, cls: 'shit-sm', stops: SHIT_GOLDEN, label: 'golden shit'          },
+      { max:  8, cls: 'shit-sm', stops: SHIT_BROWN,  label: 'brown shit'           },
+      { max: 14, cls: 'shit-md', stops: SHIT_BROWN,  label: 'real brown shit'      },
+      { max: 19, cls: 'shit-md', stops: SHIT_NOIR,   label: 'dark shit'            },
+      { max: 24, cls: 'shit-lg', stops: SHIT_NOIR,   label: 'serious dark shit'    },
+      { max: 30, cls: 'shit-lg', stops: SHIT_NOIR,   label: 'absolute dark monster'}
+    ];
+
+    function getShitTier(s) {
+      for (var i = 0; i < SHIT_TIERS.length; i++) {
+        if (s <= SHIT_TIERS[i].max) return SHIT_TIERS[i];
+      }
+      return SHIT_TIERS[SHIT_TIERS.length - 1];
+    }
+
     function showResult() {
-      const arch = getArchetype(score);
+      var tier = getShitTier(score);
+      var nick = (userProfile.nick || 'bro').trim();
 
-      const shape = document.getElementById('result-shape');
-      shape.style.background = arch.color;
-      shape.className = 'archetype-shape shape-' + arch.shape;
+      // Build headline safely via DOM — nick is user input, must NOT go into innerHTML
+      var headline = document.getElementById('result-headline');
+      headline.textContent = '';
+      headline.appendChild(document.createTextNode(nick + ', you little '));
+      var labelSpan = document.createElement('span');
+      labelSpan.className = 'result-label';
+      labelSpan.textContent = tier.label;
+      headline.appendChild(labelSpan);
 
-      const nameEl = document.getElementById('result-name');
-      nameEl.textContent = arch.name;
-      nameEl.style.color = arch.color;
-
+      // Score subtext
       document.getElementById('result-score').textContent = 'SHIT SCORE: ' + score + ' / 30';
 
-      document.getElementById('tagline-0').textContent = arch.taglines[0];
-      document.getElementById('tagline-1').textContent = arch.taglines[1];
-      document.getElementById('tagline-2').textContent = arch.taglines[2];
-
-      document.getElementById('taste-friend').textContent = arch.tastes.friend;
-      document.getElementById('taste-work').textContent   = arch.tastes.work;
-      document.getElementById('taste-date').textContent   = arch.tastes.date;
+      // Shit icon
+      var sizeMap = { 'shit-sm': [36, 42], 'shit-md': [72, 84], 'shit-lg': [120, 140] };
+      var dims = sizeMap[tier.cls];
+      var ic = document.getElementById('result-shit-icon');
+      ic.className = tier.cls;
+      drawShit(ic, dims[0], dims[1], tier.stops);
 
       showScreen('screen-result');
-
-      // Render shit level badge
-      var shitBadgeMap = {
-        'THE DECENT ONE':  { cls: 'shit-sm', stops: SHIT_GOLDEN },
-        'THE FLAKE':       { cls: 'shit-sm', stops: SHIT_BROWN  },
-        'THE GHOST':       { cls: 'shit-md', stops: SHIT_BROWN  },
-        'THE LEECH':       { cls: 'shit-md', stops: SHIT_NOIR   },
-        'THE VOLCANO':     { cls: 'shit-lg', stops: SHIT_NOIR   },
-        'THE CHAOS AGENT': { cls: 'shit-lg', stops: SHIT_NOIR   }
-      };
-      var badgeCfg = shitBadgeMap[arch.name];
-      if (badgeCfg) {
-        var sizeMap = { 'shit-sm': [36, 42], 'shit-md': [72, 84], 'shit-lg': [120, 140] };
-        var dims = sizeMap[badgeCfg.cls];
-        var ic = document.getElementById('result-shit-icon');
-        ic.className = badgeCfg.cls;
-        drawShit(ic, dims[0], dims[1], badgeCfg.stops);
-      }
     }
 
     function downloadCard() {
-      const arch = getArchetype(score);
-      const SIZE = 1080;
-      const canvas = document.createElement('canvas');
+      var tier = getShitTier(score);
+      var nick = (userProfile.nick || 'bro').trim();
+      var SIZE = 1080;
+      var canvas = document.createElement('canvas');
       canvas.width = SIZE;
       canvas.height = SIZE;
-      const ctx = canvas.getContext('2d');
+      var ctx = canvas.getContext('2d');
 
-      // Background gradient
-      const bg = ctx.createLinearGradient(0, 0, SIZE, SIZE);
+      // Background
+      var bg = ctx.createLinearGradient(0, 0, SIZE, SIZE);
       bg.addColorStop(0, '#1a1a2e');
       bg.addColorStop(1, '#16213e');
       ctx.fillStyle = bg;
       ctx.fillRect(0, 0, SIZE, SIZE);
 
-      // Archetype shape — centred at top third
-      const cx = SIZE / 2;
-      const cy = 340;
-      const r  = 150;
-      ctx.fillStyle = arch.color;
+      // Shit icon centered in top section
+      var iconW = { 'shit-sm': 120, 'shit-md': 240, 'shit-lg': 400 }[tier.cls];
+      var iconH = Math.round(iconW * (42 / 36));
+      var shitCanvas = document.createElement('canvas');
+      drawShit(shitCanvas, iconW, iconH, tier.stops);
+      ctx.drawImage(shitCanvas, (SIZE - iconW) / 2, 180);
 
-      if (arch.shape === 'circle' || arch.shape === 'blob') {
-        ctx.beginPath();
-        ctx.arc(cx, cy, r, 0, Math.PI * 2);
-        ctx.fill();
-      } else if (arch.shape === 'crescent') {
-        ctx.beginPath();
-        ctx.arc(cx, cy, r, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.fillStyle = '#16213e';
-        ctx.beginPath();
-        ctx.arc(cx - 55, cy, r * 0.72, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.fillStyle = arch.color;
-      } else if (arch.shape === 'diamond') {
-        ctx.beginPath();
-        ctx.moveTo(cx,     cy - r);
-        ctx.lineTo(cx + r, cy);
-        ctx.lineTo(cx,     cy + r);
-        ctx.lineTo(cx - r, cy);
-        ctx.closePath();
-        ctx.fill();
-      } else if (arch.shape === 'triangle') {
-        ctx.beginPath();
-        ctx.moveTo(cx,     cy - r);
-        ctx.lineTo(cx + r, cy + r);
-        ctx.lineTo(cx - r, cy + r);
-        ctx.closePath();
-        ctx.fill();
-      } else if (arch.shape === 'polygon') {
-        const offsets = [0.3, 0.7, 1.0, 0.9, 0.7, 0.4, 0.1, 0.0];
-        ctx.beginPath();
-        offsets.forEach((v, i) => {
-          const angle = (i / offsets.length) * Math.PI * 2 - Math.PI / 2;
-          const pr = r * (0.7 + v * 0.3);
-          const x = cx + Math.cos(angle) * pr;
-          const y = cy + Math.sin(angle) * pr;
-          if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
-        });
-        ctx.closePath();
-        ctx.fill();
-      }
+      // Headline line 1 — nick via fillText (canvas, no XSS risk)
+      ctx.fillStyle = '#fff';
+      ctx.font = '900 72px -apple-system, BlinkMacSystemFont, Arial, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText(nick + ', you little', SIZE / 2, 600);
 
-      // Archetype name
-      ctx.fillStyle  = arch.color;
-      ctx.font       = '900 72px -apple-system, BlinkMacSystemFont, Arial, sans-serif';
-      ctx.textAlign  = 'center';
-      ctx.fillText(arch.name, SIZE / 2, 570);
+      // Headline line 2 (label in pink)
+      ctx.fillStyle = '#e96fff';
+      ctx.fillText(tier.label, SIZE / 2, 690);
 
       // Score
-      ctx.fillStyle = '#7bf1a8';
-      ctx.font      = '600 36px -apple-system, BlinkMacSystemFont, Arial, sans-serif';
-      ctx.fillText('SHIT SCORE: ' + score + ' / 30', SIZE / 2, 630);
-
-      // Taglines
-      ctx.fillStyle = '#aaaaaa';
-      ctx.font      = '400 32px -apple-system, BlinkMacSystemFont, Arial, sans-serif';
-      arch.taglines.forEach(function(line, i) {
-        ctx.fillText(line, SIZE / 2, 710 + i * 52);
-      });
+      ctx.fillStyle = '#555';
+      ctx.font = '600 32px -apple-system, BlinkMacSystemFont, Arial, sans-serif';
+      ctx.fillText('SHIT SCORE: ' + score + ' / 30', SIZE / 2, 760);
 
       // Watermark
-      ctx.fillStyle  = '#333';
-      ctx.font       = '400 24px -apple-system, BlinkMacSystemFont, Arial, sans-serif';
-      ctx.textAlign  = 'right';
+      ctx.fillStyle = '#333';
+      ctx.font = '400 24px -apple-system, BlinkMacSystemFont, Arial, sans-serif';
+      ctx.textAlign = 'right';
       ctx.fillText('amishitbro.com', SIZE - 40, SIZE - 40);
 
-      // Trigger download
       canvas.toBlob(function(blob) {
-        const url = URL.createObjectURL(blob);
-        const a   = document.createElement('a');
-        a.href     = url;
-        a.download = 'amishitbro-' + arch.name.toLowerCase().replace(/\s+/g, '-') + '.png';
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = 'amishitbro-result.png';
         a.click();
         URL.revokeObjectURL(url);
       }, 'image/png');
