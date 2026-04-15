@@ -517,8 +517,101 @@
     }
 
     function downloadCard() {
-      // implemented in Task 6
-      alert('Card download — coming next!');
+      const arch = getArchetype(score);
+      const SIZE = 1080;
+      const canvas = document.createElement('canvas');
+      canvas.width = SIZE;
+      canvas.height = SIZE;
+      const ctx = canvas.getContext('2d');
+
+      // Background gradient
+      const bg = ctx.createLinearGradient(0, 0, SIZE, SIZE);
+      bg.addColorStop(0, '#1a1a2e');
+      bg.addColorStop(1, '#16213e');
+      ctx.fillStyle = bg;
+      ctx.fillRect(0, 0, SIZE, SIZE);
+
+      // Archetype shape — centred at top third
+      const cx = SIZE / 2;
+      const cy = 340;
+      const r  = 150;
+      ctx.fillStyle = arch.color;
+
+      if (arch.shape === 'circle' || arch.shape === 'blob') {
+        ctx.beginPath();
+        ctx.arc(cx, cy, r, 0, Math.PI * 2);
+        ctx.fill();
+      } else if (arch.shape === 'crescent') {
+        ctx.beginPath();
+        ctx.arc(cx, cy, r, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = '#16213e';
+        ctx.beginPath();
+        ctx.arc(cx - 55, cy, r * 0.72, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = arch.color;
+      } else if (arch.shape === 'diamond') {
+        ctx.beginPath();
+        ctx.moveTo(cx,     cy - r);
+        ctx.lineTo(cx + r, cy);
+        ctx.lineTo(cx,     cy + r);
+        ctx.lineTo(cx - r, cy);
+        ctx.closePath();
+        ctx.fill();
+      } else if (arch.shape === 'triangle') {
+        ctx.beginPath();
+        ctx.moveTo(cx,     cy - r);
+        ctx.lineTo(cx + r, cy + r);
+        ctx.lineTo(cx - r, cy + r);
+        ctx.closePath();
+        ctx.fill();
+      } else if (arch.shape === 'polygon') {
+        const offsets = [0.3, 0.7, 1.0, 0.9, 0.7, 0.4, 0.1, 0.0];
+        ctx.beginPath();
+        offsets.forEach((v, i) => {
+          const angle = (i / offsets.length) * Math.PI * 2 - Math.PI / 2;
+          const pr = r * (0.7 + v * 0.3);
+          const x = cx + Math.cos(angle) * pr;
+          const y = cy + Math.sin(angle) * pr;
+          if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+        });
+        ctx.closePath();
+        ctx.fill();
+      }
+
+      // Archetype name
+      ctx.fillStyle  = arch.color;
+      ctx.font       = '900 72px -apple-system, BlinkMacSystemFont, Arial, sans-serif';
+      ctx.textAlign  = 'center';
+      ctx.fillText(arch.name, SIZE / 2, 570);
+
+      // Score
+      ctx.fillStyle = '#7bf1a8';
+      ctx.font      = '600 36px -apple-system, BlinkMacSystemFont, Arial, sans-serif';
+      ctx.fillText('SHIT SCORE: ' + score + ' / 50', SIZE / 2, 630);
+
+      // Taglines
+      ctx.fillStyle = '#aaaaaa';
+      ctx.font      = '400 32px -apple-system, BlinkMacSystemFont, Arial, sans-serif';
+      arch.taglines.forEach(function(line, i) {
+        ctx.fillText(line, SIZE / 2, 710 + i * 52);
+      });
+
+      // Watermark
+      ctx.fillStyle  = '#333';
+      ctx.font       = '400 24px -apple-system, BlinkMacSystemFont, Arial, sans-serif';
+      ctx.textAlign  = 'right';
+      ctx.fillText('amishitbro.com', SIZE - 40, SIZE - 40);
+
+      // Trigger download
+      canvas.toBlob(function(blob) {
+        const url = URL.createObjectURL(blob);
+        const a   = document.createElement('a');
+        a.href     = url;
+        a.download = 'amishitbro-' + arch.name.toLowerCase().replace(/\s+/g, '-') + '.png';
+        a.click();
+        URL.revokeObjectURL(url);
+      }, 'image/png');
     }
   </script>
 </body>
