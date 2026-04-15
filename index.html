@@ -266,6 +266,48 @@
     }
     .btn-sowhat:hover { border-color: #7bf1a8; color: #7bf1a8; }
 
+    /* Closing */
+    #screen-closing {
+      text-align: center;
+      gap: 0;
+      padding: 48px 24px 40px;
+    }
+
+    .closing-headline {
+      font-size: clamp(1.8rem, 8vw, 2.8rem);
+      font-weight: 900;
+      background: linear-gradient(90deg, #e96fff, #7bf1a8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+
+    .closing-hook {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 32px;
+      letter-spacing: 0.02em;
+    }
+
+    .closing-body {
+      color: #aaa;
+      font-size: 0.9rem;
+      line-height: 1.7;
+      text-align: left;
+      margin-bottom: 36px;
+    }
+
+    .closing-body p { margin-bottom: 16px; }
+    .closing-body p:last-child { margin-bottom: 0; }
+
+    .closing-body strong {
+      color: #fff;
+      font-weight: 700;
+    }
+
     /* Profile */
     #screen-profile { gap: 0; padding: 40px 24px; text-align: center; }
 
@@ -435,6 +477,22 @@
     <button class="btn-sowhat" onclick="showScreen('screen-closing')">so what? →</button>
     <a class="donate-link" href="https://ko-fi.com/PLACEHOLDER" target="_blank" rel="noopener">
       ☕ if this hit too hard, buy me a coffee
+    </a>
+  </section>
+
+  <!-- Screen 5: Closing -->
+  <section id="screen-closing" class="screen">
+    <h2 class="closing-headline">SO WHAT IF YOU ARE SHIT!</h2>
+    <p class="closing-hook">We know you are shit. We are here to help.</p>
+    <div class="closing-body">
+      <p>Look. You took a quiz on the internet to find out if you're a bad person. That's either the most self-aware thing someone can do, or the most delusional. Either way — you're here.</p>
+      <p>Maybe you made a bad step. Maybe the people around you never learned the lesson that turned out to be yours to carry. Maybe your DNA line has been holding that pattern for a long time and it landed on you to break it.</p>
+      <p>The shit isn't funny for long. You already know that.</p>
+      <p><strong>You're not broken. You're just unfinished.</strong></p>
+    </div>
+    <button class="btn-primary" onclick="startQuiz()" style="margin-bottom:16px">start over →</button>
+    <a class="donate-link" href="https://ko-fi.com/PLACEHOLDER" target="_blank" rel="noopener">
+      ☕ if this hit different, buy me a coffee
     </a>
   </section>
 
