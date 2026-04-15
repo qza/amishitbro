@@ -250,6 +250,22 @@
     }
     .btn-retake:hover { border-color: #555; color: #bbb; }
 
+    .btn-sowhat {
+      width: 100%;
+      padding: 11px;
+      background: transparent;
+      border: 1px solid #333;
+      border-radius: 40px;
+      color: #555;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      letter-spacing: 0.04em;
+      transition: border-color 0.2s, color 0.2s;
+      margin-top: 4px;
+    }
+    .btn-sowhat:hover { border-color: #7bf1a8; color: #7bf1a8; }
+
     /* Profile */
     #screen-profile { gap: 0; padding: 40px 24px; text-align: center; }
 
@@ -416,6 +432,7 @@
       <button class="btn-save" onclick="downloadCard()">⬇ save card</button>
       <button class="btn-retake" onclick="startQuiz()">retake</button>
     </div>
+    <button class="btn-sowhat" onclick="showScreen('screen-closing')">so what? →</button>
     <a class="donate-link" href="https://ko-fi.com/PLACEHOLDER" target="_blank" rel="noopener">
       ☕ if this hit too hard, buy me a coffee
     </a>
@@ -762,7 +779,7 @@
       nameEl.textContent = arch.name;
       nameEl.style.color = arch.color;
 
-      document.getElementById('result-score').textContent = 'SHIT SCORE: ' + score + ' / 50';
+      document.getElementById('result-score').textContent = 'SHIT SCORE: ' + score + ' / 30';
 
       document.getElementById('tagline-0').textContent = arch.taglines[0];
       document.getElementById('tagline-1').textContent = arch.taglines[1];
@@ -847,7 +864,7 @@
       // Score
       ctx.fillStyle = '#7bf1a8';
       ctx.font      = '600 36px -apple-system, BlinkMacSystemFont, Arial, sans-serif';
-      ctx.fillText('SHIT SCORE: ' + score + ' / 50', SIZE / 2, 630);
+      ctx.fillText('SHIT SCORE: ' + score + ' / 30', SIZE / 2, 630);
 
       // Taglines
       ctx.fillStyle = '#aaaaaa';
