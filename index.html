@@ -314,45 +314,112 @@
 
   <script>
     const QUESTIONS = [
-      // PROBABLY (weight: 1) — mild behaviours
-      { text: "You cancel plans the day of, pretty regularly", weight: 1 },
-      { text: "You've ignored a message and 'forgot' to reply for over a week", weight: 1 },
-      { text: "You talk over people without noticing", weight: 1 },
-      { text: "You show up late more often than you're on time", weight: 1 },
-      { text: "You give advice nobody asked for", weight: 1 },
-      { text: "You've borrowed money and been slow to pay it back", weight: 1 },
-      { text: "You vent to friends but tune out when it's their turn", weight: 1 },
-      { text: "You leave group chats on read when it's inconvenient", weight: 1 },
-      { text: "You make everything about yourself in conversations", weight: 1 },
-      { text: "You say 'I'm on my way' when you haven't left yet", weight: 1 },
-
-      // DEFINITELY (weight: 2) — spicier behaviours
-      { text: "You've left someone on read for 3+ days on purpose", weight: 2 },
-      { text: "You've ghosted someone you were seeing without explanation", weight: 2 },
-      { text: "You talk shit about your friends to other friends", weight: 2 },
-      { text: "You've used someone's insecurity against them in an argument", weight: 2 },
-      { text: "You've taken credit for someone else's work", weight: 2 },
-      { text: "You play victim in situations you caused", weight: 2 },
-      { text: "You've cheated and not told anyone", weight: 2 },
-      { text: "You cancel on people more than once for the same plan", weight: 2 },
-      { text: "You guilt-trip people when they set boundaries with you", weight: 2 },
-      { text: "You've borrowed something and never returned it", weight: 2 },
-      { text: "You manipulate situations so things go your way", weight: 2 },
-      { text: "You say you're 'not a drama person' but you always have drama", weight: 2 },
-      { text: "You've lied to a close friend to avoid a hard conversation", weight: 2 },
-      { text: "You treat service workers worse than you treat your boss", weight: 2 },
-      { text: "You've made a joke at someone's expense and called it banter", weight: 2 },
-      { text: "You know you're wrong in an argument but keep going anyway", weight: 2 },
-      { text: "You disappear when friends need you but expect them when you need them", weight: 2 },
-      { text: "You've promised to change a behaviour and haven't even tried", weight: 2 },
-      { text: "You gaslight people into thinking they're overreacting", weight: 2 },
-      { text: "You've sabotaged someone else's opportunity, even subtly", weight: 2 },
+      {
+        text: "Do you collect Tarzans in the forest between anus hole and balls?",
+        badge: "DEFINITELY",
+        answers: [{ label: "yeah", score: 2 }, { label: "nah", score: 0 }]
+      },
+      {
+        text: 'Have people told you "stop shitting on me"?',
+        badge: "DEFINITELY",
+        answers: [{ label: "yeah", score: 2 }, { label: "nah", score: 0 }]
+      },
+      {
+        text: "Do you do that ass movement that lifts your back upward, ready to make shit?",
+        badge: "PROBABLY",
+        answers: [{ label: "yeah", score: 1 }, { label: "nah", score: 0 }]
+      },
+      {
+        text: "Do you spin your head round making disgusted faces?",
+        badge: "PROBABLY",
+        answers: [{ label: "yeah", score: 1 }, { label: "nah", score: 0 }]
+      },
+      {
+        text: "Did you ever get told to eat shit? Or is this not some city shit you know?",
+        badge: "DEFINITELY",
+        answers: [{ label: "yeah", score: 2 }, { label: "nah", score: 0 }]
+      },
+      {
+        text: "Do you buy watches for all your friends and you're not a football player?",
+        badge: "PROBABLY",
+        answers: [{ label: "yeah", score: 1 }, { label: "nah", score: 0 }]
+      },
+      {
+        text: 'Have you ever responded: "who gives a damn if you are shit or not?"',
+        badge: "DEFINITELY",
+        answers: [{ label: "yeah", score: 2 }, { label: "nah", score: 0 }]
+      },
+      {
+        text: 'Do you say often: "stop looking at me you shit!"',
+        badge: "MIRROR",
+        answers: [{ label: "sometimes", score: -1 }, { label: "yes", score: 0 }, { label: "no", score: 2 }]
+      },
+      {
+        text: "Do you often find material in your anus bag (hard to clean spot)?",
+        badge: "MIRROR",
+        answers: [{ label: "yeah", score: -1 }, { label: "nah", score: 1 }]
+      },
+      {
+        text: "Are you aware that you are shit sometimes?",
+        badge: "MIRROR",
+        answers: [{ label: "yeah", score: -1 }, { label: "nah", score: 2 }]
+      },
+      {
+        text: "Do you find that shit funny and tasty?",
+        badge: "MIRROR",
+        answers: [{ label: "yeah", score: -1 }, { label: "nah", score: 1 }]
+      },
+      {
+        text: "Am I shit or you are shit?",
+        badge: "MIRROR",
+        answers: [{ label: "both", score: 0 }, { label: "you", score: -1 }, { label: "I", score: 2 }]
+      },
+      {
+        text: "Do you keep a lot of shit in your iPhone or mobile?",
+        badge: "PROBABLY",
+        answers: [{ label: "yeah", score: 0 }, { label: "nah", score: 1 }]
+      },
+      {
+        text: "Can you tell easily if somebody is a shit or not?",
+        badge: "DEFINITELY",
+        answers: [{ label: "yeah", score: 2 }, { label: "nah", score: 0 }]
+      },
+      {
+        text: "Are you ready to go all white tonight? Party?",
+        badge: "PROBABLY",
+        answers: [{ label: "yeah", score: 1 }, { label: "nah", score: 0 }]
+      },
+      {
+        text: "Do you think brown sugar is healthier than white sugar?",
+        badge: "MIRROR",
+        answers: [{ label: "same thing", score: 1 }, { label: "yeah", score: 0 }, { label: "nah", score: -1 }]
+      },
+      {
+        text: 'Do you hear often: "well that is the shit of an argument"',
+        badge: "MIRROR",
+        answers: [{ label: "yeah", score: -1 }, { label: "nah", score: 1 }]
+      },
+      {
+        text: 'Do you get sometimes: "hey, that is a secret you shit"',
+        badge: "MIRROR",
+        answers: [{ label: "yeah", score: -1 }, { label: "nah", score: 1 }]
+      },
+      {
+        text: "Do you care at all about your shit friends?",
+        badge: "MIRROR",
+        answers: [{ label: "yeah", score: -1 }, { label: "can't tell", score: 0 }, { label: "nah", score: 1 }]
+      },
+      {
+        text: "Do you ever say sorry you shit?",
+        badge: "MIRROR",
+        answers: [{ label: "yeah", score: 1 }, { label: "not like that", score: -1 }]
+      },
     ];
 
     const ARCHETYPES = [
       {
         name: "THE DECENT ONE",
-        min: 0, max: 8,
+        min: -8, max: 2,
         color: "#7bf1a8",
         shape: "circle",
         taglines: [
@@ -368,7 +435,7 @@
       },
       {
         name: "THE FLAKE",
-        min: 9, max: 16,
+        min: 3, max: 8,
         color: "#a8e063",
         shape: "blob",
         taglines: [
@@ -384,7 +451,7 @@
       },
       {
         name: "THE GHOST",
-        min: 17, max: 24,
+        min: 9, max: 14,
         color: "#4ecdc4",
         shape: "crescent",
         taglines: [
@@ -400,7 +467,7 @@
       },
       {
         name: "THE LEECH",
-        min: 25, max: 32,
+        min: 15, max: 19,
         color: "#e96fff",
         shape: "diamond",
         taglines: [
@@ -416,7 +483,7 @@
       },
       {
         name: "THE VOLCANO",
-        min: 33, max: 41,
+        min: 20, max: 24,
         color: "#ff6b6b",
         shape: "triangle",
         taglines: [
@@ -432,7 +499,7 @@
       },
       {
         name: "THE CHAOS AGENT",
-        min: 42, max: 50,
+        min: 25, max: 30,
         color: "#ff9a3c",
         shape: "polygon",
         taglines: [
