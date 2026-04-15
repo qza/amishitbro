@@ -248,8 +248,7 @@
     }
 
     .book {
-      flex-shrink: 0;
-      width: 80px;
+      width: 100%;
       height: 110px;
       display: flex;
       border-radius: 3px 6px 6px 3px;
@@ -559,6 +558,50 @@
       margin-top: 4px;
     }
     .btn-experts:hover { background: rgba(233,111,255,0.1); }
+
+    /* ── V4 Books screen ───────────────────────────────────────────── */
+
+    #screen-books {
+      text-align: center;
+      gap: 0;
+      padding: 40px 24px;
+    }
+
+    .books-header {
+      color: #555;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      font-style: italic;
+      margin-bottom: 24px;
+    }
+
+    .books-grid {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    @media (min-width: 400px) {
+      .books-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .books-footer {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      padding-top: 16px;
+      border-top: 1px solid #1f2937;
+    }
+
+    .books-footer-tagline {
+      color: #444;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+    }
   </style>
 </head>
 <body>
@@ -727,6 +770,54 @@
       </div>
 
     </div>
+  </section>
+
+  <!-- Screen 5: Books -->
+  <section id="screen-books" class="screen">
+    <p class="books-header">Further reading. Not really.</p>
+
+    <div class="books-grid">
+      <div class="book" style="--book-color: #c0392b;" onclick="startQuiz()">
+        <div class="book-spine"></div>
+        <div class="book-face">
+          <p class="book-title">How To Grow Eat-Shit Kids For Famous Parents</p>
+          <p class="book-author">Dr. Karen Obviously</p>
+        </div>
+      </div>
+      <div class="book" style="--book-color: #2c3e50;" onclick="startQuiz()">
+        <div class="book-spine"></div>
+        <div class="book-face">
+          <p class="book-title">Is This Shit Real Or Not: Expert Analysis</p>
+          <p class="book-author">Prof. J. Doesntmatter PhD</p>
+        </div>
+      </div>
+      <div class="book" style="--book-color: #f39c12;" onclick="startQuiz()">
+        <div class="book-spine"></div>
+        <div class="book-face">
+          <p class="book-title">Carrying Your Shit Across Three Continents</p>
+          <p class="book-author">A guy named Dave</p>
+        </div>
+      </div>
+      <div class="book" style="--book-color: #27ae60;" onclick="startQuiz()">
+        <div class="book-spine"></div>
+        <div class="book-face">
+          <p class="book-title">The Subtle Art of Not Being A Complete Shit</p>
+          <p class="book-author">Someone's Therapist</p>
+        </div>
+      </div>
+      <div class="book" style="--book-color: #2d2d4e;" onclick="startQuiz()">
+        <div class="book-spine"></div>
+        <div class="book-face">
+          <p class="book-title">Shit-Free in 30 Days: A Memoir</p>
+          <p class="book-author">Anonymous (obviously)</p>
+        </div>
+      </div>
+    </div>
+
+    <footer class="books-footer">
+      <p class="books-footer-tagline">Who reads this shit anyway?</p>
+      <button class="btn-retake" onclick="showScreen('screen-closing')" style="font-size:0.8rem; padding:8px 16px;">&#8592; back</button>
+    </footer>
   </section>
 
   <script>
