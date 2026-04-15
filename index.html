@@ -439,72 +439,142 @@
       .scene-img { width: 100%; height: 160px; }
     }
 
-    /* Profile */
+    /* ── V4 Profile: breadcrumb + circle selector ─────────────────── */
+
     #screen-profile { gap: 0; padding: 40px 24px; text-align: center; }
 
-    .profile-title {
-      font-size: 1.1rem;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      color: #fff;
-      margin-bottom: 6px;
-    }
-
-    .profile-subtitle {
-      color: #555;
-      font-size: 0.8rem;
-      margin-bottom: 36px;
-    }
-
-    .profile-section {
+    .options-slot {
       width: 100%;
-      margin-bottom: 28px;
-      text-align: left;
-    }
-
-    .profile-label {
-      font-size: 0.65rem;
-      letter-spacing: 0.12em;
-      color: #555;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-
-    .pill-row {
+      height: 100px;
       display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      position: relative;
     }
 
-    .pill {
-      padding: 8px 18px;
-      border: 1px solid #2a2a3e;
-      border-radius: 24px;
-      background: rgba(255,255,255,0.03);
-      color: #888;
-      font-size: 0.85rem;
-      font-weight: 600;
+    .options-layer {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .options-layer.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .circle-option {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
       cursor: pointer;
-      transition: border-color 0.15s, color 0.15s, background 0.15s;
       user-select: none;
     }
-    .pill:hover { border-color: #555; color: #ccc; }
-    .pill.selected {
-      border-color: #e96fff;
-      color: #e96fff;
-      background: rgba(233,111,255,0.1);
+
+    .circle-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      border: 2px solid transparent;
+      transition: transform 0.18s ease, filter 0.18s ease, border-color 0.18s ease;
     }
-    .pill.locked {
-      border-color: #4ecdc4;
-      color: #4ecdc4;
-      background: rgba(78,205,196,0.1);
-      cursor: default;
-      opacity: 0.8;
+    .circle-option:hover .circle-icon {
+      transform: scale(1.28);
+      filter: drop-shadow(0 0 8px currentColor);
+      border-color: currentColor;
+    }
+    .circle-option.selected .circle-icon {
+      border-color: #fff;
+      transform: scale(1.1);
     }
 
-    .btn-letsgo {
-      width: 100%;
-      padding: 14px;
+    .circle-label {
+      font-size: 0.7rem;
+      color: #888;
+      letter-spacing: 0.06em;
+      font-weight: 600;
+    }
+
+    /* Nick input inside options slot */
+    .nick-layer {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .nick-layer.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .nick-input {
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid #333;
+      color: #fff;
+      font-size: 1.7rem;
+      font-weight: 700;
+      text-align: center;
+      width: 220px;
+      outline: none;
+      padding-bottom: 4px;
+      transition: border-color 0.2s;
+    }
+    .nick-input:focus { border-color: #7bf1a8; }
+    .nick-input::placeholder { color: #333; }
+
+    /* Breadcrumb bar */
+    .breadcrumb-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      margin-bottom: 32px;
+    }
+    .bc-item {
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: #252535;
+      padding: 6px 12px;
+      border-bottom: 2px solid transparent;
+      cursor: default;
+      user-select: none;
+      transition: color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+    }
+    .bc-item.active {
+      color: #fff;
+      border-bottom-color: #e96fff;
+    }
+    .bc-item.done {
+      color: #666;
+      cursor: pointer;
+    }
+    .bc-sep {
+      color: #333;
+      font-size: 0.8rem;
+      padding: 0 2px;
+    }
+
+    /* go! button (hidden until all 3 steps done) */
+    .btn-go {
+      display: inline-block;
+      padding: 14px 40px;
       background: linear-gradient(90deg, #e96fff, #7bf1a8);
       border: none;
       border-radius: 40px;
@@ -514,15 +584,15 @@
       cursor: pointer;
       letter-spacing: 0.03em;
       transition: transform 0.15s, opacity 0.15s;
-      margin-top: 8px;
+      opacity: 0;
+      pointer-events: none;
     }
-    .btn-letsgo:hover { transform: scale(1.02); opacity: 0.92; }
-    .btn-letsgo:active { transform: scale(0.97); }
-    .btn-letsgo:disabled {
-      opacity: 0.25;
-      cursor: not-allowed;
-      transform: none;
+    .btn-go.ready {
+      opacity: 1;
+      pointer-events: auto;
     }
+    .btn-go:hover { transform: scale(1.04); opacity: 0.92; }
+    .btn-go:active { transform: scale(0.97); }
   </style>
 </head>
 <body>
@@ -539,28 +609,62 @@
 
   <!-- Screen 2: Profile -->
   <section id="screen-profile" class="screen">
-    <p class="profile-title">QUICK PROFILE</p>
-    <p class="profile-subtitle">takes 2 seconds, affects your result</p>
 
-    <div class="profile-section">
-      <p class="profile-label">gender</p>
-      <div class="pill-row" id="gender-pills">
-        <button class="pill" data-value="male"   onclick="selectGender(this)">Male</button>
-        <button class="pill" data-value="female" onclick="selectGender(this)">Female</button>
-        <button class="pill" data-value="chaos"  onclick="selectGender(this)">Chaos</button>
+    <!-- Options slot — content crossfades in place -->
+    <div class="options-slot">
+
+      <!-- Gender layer -->
+      <div class="options-layer visible" id="layer-gender">
+        <div class="circle-option" data-value="male" onclick="profilePick('gender','male',this)">
+          <div class="circle-icon" style="background:#5b8dee; color:#5b8dee;">&#9794;</div>
+          <span class="circle-label">Male</span>
+        </div>
+        <div class="circle-option" data-value="female" onclick="profilePick('gender','female',this)">
+          <div class="circle-icon" style="background:#e96fff; color:#e96fff;">&#9792;</div>
+          <span class="circle-label">Female</span>
+        </div>
+        <div class="circle-option" data-value="chaos" onclick="profilePick('gender','chaos',this)">
+          <div class="circle-icon" style="background:#4ecdc4; color:#4ecdc4;">&#9775;</div>
+          <span class="circle-label">Chaos</span>
+        </div>
       </div>
+
+      <!-- Age layer (hidden until gender picked) -->
+      <div class="options-layer" id="layer-age">
+        <div class="circle-option" data-value="young" onclick="profilePick('age','young',this)">
+          <div class="circle-icon" style="background:#a8e063;">🌱</div>
+          <span class="circle-label">Young</span>
+        </div>
+        <div class="circle-option" data-value="man-woman" onclick="profilePick('age','man-woman',this)">
+          <div class="circle-icon" style="background:#ffd166;">🧑</div>
+          <span class="circle-label">Man/Woman</span>
+        </div>
+        <div class="circle-option" data-value="kinda-old" onclick="profilePick('age','kinda-old',this)">
+          <div class="circle-icon" style="background:#ff9a3c;">🧓</div>
+          <span class="circle-label">Kinda old</span>
+        </div>
+      </div>
+
+      <!-- Nick layer (hidden until age picked) -->
+      <div class="nick-layer" id="layer-nick">
+        <input class="nick-input" id="nick-input" type="text" maxlength="12"
+               placeholder="Dave?" autocomplete="off" spellcheck="false"
+               oninput="profileNickInput()" />
+      </div>
+
     </div>
 
-    <div class="profile-section">
-      <p class="profile-label">age</p>
-      <div class="pill-row" id="age-pills">
-        <button class="pill" data-value="young"     onclick="selectAge(this)">Young</button>
-        <button class="pill" data-value="man-woman" onclick="selectAge(this)">Man/Woman</button>
-        <button class="pill" data-value="kinda-old" onclick="selectAge(this)">Kinda old</button>
-      </div>
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-bar">
+      <span class="bc-item active" id="bc-gender" onclick="bcGo('gender')">Gender</span>
+      <span class="bc-sep">/</span>
+      <span class="bc-item" id="bc-age" onclick="bcGo('age')">Age</span>
+      <span class="bc-sep">/</span>
+      <span class="bc-item" id="bc-nick" onclick="bcGo('nick')">Nick &#x258c;</span>
     </div>
 
-    <button class="btn-letsgo" id="btn-letsgo" onclick="beginQuiz()" disabled>let's go →</button>
+    <button class="btn-go" id="btn-go" onclick="beginQuiz()">go! &#8594;</button>
+
   </section>
 
   <!-- Screen 2: Quiz (populated by JS) -->
@@ -1010,55 +1114,104 @@
     let currentQ = 0;
     let score = 0;
 
-    let userProfile = { gender: null, age: null };
+    let userProfile = { gender: null, age: null, nick: null };
 
-    function makePill(label, value, selected, handler) {
-      const btn = document.createElement('button');
-      btn.className = 'pill' + (selected ? ' selected' : '');
-      btn.dataset.value = value;
-      btn.textContent = label;
-      btn.onclick = function() { handler(btn); };
-      return btn;
+    // step = 'gender' | 'age' | 'nick'
+    let profileStep = 'gender';
+
+    function showLayer(step) {
+      document.getElementById('layer-gender').classList.toggle('visible', step === 'gender');
+      document.getElementById('layer-age').classList.toggle('visible',    step === 'age');
+      document.getElementById('layer-nick').classList.toggle('visible',   step === 'nick');
     }
 
-    function selectGender(pill) {
-      document.querySelectorAll('#gender-pills .pill').forEach(function(p) {
-        p.classList.remove('selected');
+    function updateBreadcrumb() {
+      var steps = ['gender', 'age', 'nick'];
+      var ids   = { gender: 'bc-gender', age: 'bc-age', nick: 'bc-nick' };
+      steps.forEach(function(s) {
+        var el = document.getElementById(ids[s]);
+        el.classList.remove('active', 'done');
+        if (s === profileStep) {
+          el.classList.add('active');
+        } else if (isStepDone(s)) {
+          el.classList.add('done');
+        }
       });
-      pill.classList.add('selected');
-      userProfile = Object.assign({}, userProfile, { gender: pill.dataset.value });
+      // Update nick breadcrumb label: typed value or default cursor label
+      var nickEl = document.getElementById('bc-nick');
+      nickEl.textContent = userProfile.nick ? userProfile.nick : 'Nick \u258c';
+    }
 
-      const agePills = document.getElementById('age-pills');
+    function isStepDone(s) {
+      if (s === 'gender') return !!userProfile.gender;
+      if (s === 'age')    return !!userProfile.age;
+      if (s === 'nick')   return !!userProfile.nick;
+      return false;
+    }
 
-      if (userProfile.gender === 'chaos') {
-        userProfile = Object.assign({}, userProfile, { age: 'middle-age' });
-        agePills.replaceChildren();
-        var locked = document.createElement('button');
-        locked.className = 'pill locked';
-        locked.textContent = 'Middle age \uD83D\uDE36';
-        agePills.appendChild(locked);
-      } else {
-        if (userProfile.age === 'middle-age') { userProfile = Object.assign({}, userProfile, { age: null }); }
-        agePills.replaceChildren(
-          makePill('Young',       'young',     userProfile.age === 'young',     selectAge),
-          makePill('Man/Woman',   'man-woman', userProfile.age === 'man-woman', selectAge),
-          makePill('Kinda old',   'kinda-old', userProfile.age === 'kinda-old', selectAge)
-        );
+    function profilePick(field, value, el) {
+      var layerId = field === 'gender' ? 'layer-gender' : 'layer-age';
+      document.querySelectorAll('#' + layerId + ' .circle-option').forEach(function(c) {
+        c.classList.remove('selected');
+      });
+      el.classList.add('selected');
+      userProfile = Object.assign({}, userProfile, { [field]: value });
+
+      if (field === 'gender') {
+        userProfile = Object.assign({}, userProfile, { age: null, nick: null });
+        document.getElementById('nick-input').value = '';
+        profileStep = 'age';
+      } else if (field === 'age') {
+        userProfile = Object.assign({}, userProfile, { nick: null });
+        document.getElementById('nick-input').value = '';
+        profileStep = 'nick';
+        setTimeout(function() { document.getElementById('nick-input').focus(); }, 320);
       }
-      updateLetsGo();
+
+      showLayer(profileStep);
+      updateBreadcrumb();
+      updateGoButton();
     }
 
-    function selectAge(pill) {
-      document.querySelectorAll('#age-pills .pill').forEach(function(p) {
-        p.classList.remove('selected');
-      });
-      pill.classList.add('selected');
-      userProfile = Object.assign({}, userProfile, { age: pill.dataset.value });
-      updateLetsGo();
+    function profileNickInput() {
+      var val = document.getElementById('nick-input').value.trim();
+      userProfile = Object.assign({}, userProfile, { nick: val || null });
+      updateBreadcrumb();
+      updateGoButton();
     }
 
-    function updateLetsGo() {
-      document.getElementById('btn-letsgo').disabled = !(userProfile.gender && userProfile.age);
+    function bcGo(step) {
+      var el = document.getElementById('bc-' + step);
+      if (!el.classList.contains('done') && step !== profileStep) return;
+      if (step === 'gender') {
+        userProfile = Object.assign({}, userProfile, { gender: null, age: null, nick: null });
+        document.getElementById('nick-input').value = '';
+        document.querySelectorAll('#layer-gender .circle-option, #layer-age .circle-option').forEach(function(c) {
+          c.classList.remove('selected');
+        });
+        profileStep = 'gender';
+      } else if (step === 'age') {
+        userProfile = Object.assign({}, userProfile, { age: null, nick: null });
+        document.getElementById('nick-input').value = '';
+        document.querySelectorAll('#layer-age .circle-option').forEach(function(c) {
+          c.classList.remove('selected');
+        });
+        profileStep = 'age';
+      } else if (step === 'nick') {
+        userProfile = Object.assign({}, userProfile, { nick: null });
+        document.getElementById('nick-input').value = '';
+        profileStep = 'nick';
+        setTimeout(function() { document.getElementById('nick-input').focus(); }, 50);
+      }
+      showLayer(profileStep);
+      updateBreadcrumb();
+      updateGoButton();
+    }
+
+    function updateGoButton() {
+      var btn = document.getElementById('btn-go');
+      var ready = !!(userProfile.gender && userProfile.age && userProfile.nick);
+      btn.classList.toggle('ready', ready);
     }
 
     function beginQuiz() {
@@ -1069,6 +1222,15 @@
     }
 
     function startQuiz() {
+      userProfile = { gender: null, age: null, nick: null };
+      profileStep = 'gender';
+      document.getElementById('nick-input').value = '';
+      document.querySelectorAll('#layer-gender .circle-option, #layer-age .circle-option').forEach(function(c) {
+        c.classList.remove('selected');
+      });
+      showLayer('gender');
+      updateBreadcrumb();
+      updateGoButton();
       showScreen('screen-profile');
     }
 
