@@ -98,6 +98,7 @@
     }
     .badge-probably  { background: rgba(163, 230, 99, 0.15); color: #a8e063; }
     .badge-definitely { background: rgba(233, 111, 255, 0.15); color: #e96fff; }
+    .badge-mirror { background: rgba(78, 205, 196, 0.15); color: #4ecdc4; }
 
     .progress-track {
       width: 100%;
@@ -376,17 +377,14 @@
   <!-- Screen 2: Quiz (populated by JS) -->
   <section id="screen-quiz" class="screen">
     <div class="quiz-header">
-      <span class="quiz-counter" id="quiz-counter">1 / 30</span>
+      <span class="quiz-counter" id="quiz-counter">1 / 20</span>
       <span class="badge badge-probably" id="quiz-badge">PROBABLY</span>
     </div>
     <div class="progress-track">
       <div class="progress-fill" id="progress-fill" style="width:0%"></div>
     </div>
     <p class="question-text" id="question-text"></p>
-    <div class="answer-btns">
-      <button class="btn-answer yes" onclick="answer(true)">✓ yeah bro, no cap</button>
-      <button class="btn-answer no"  onclick="answer(false)">✗ nah that's not me</button>
-    </div>
+    <div class="answer-btns" id="answer-btns"></div>
   </section>
 
   <!-- Screen 3: Result (populated by JS) -->
@@ -696,37 +694,55 @@
     }
 
     function renderQuestion() {
-      const q = QUESTIONS[currentQ];
-      const total = QUESTIONS.length;
+      var q     = QUESTIONS[currentQ];
+      var total = QUESTIONS.length;
 
-      const qText = document.getElementById('question-text');
+      var qText = document.getElementById('question-text');
       qText.style.opacity = '0';
-      setTimeout(() => {
+      setTimeout(function() {
         qText.textContent = q.text;
         qText.style.opacity = '1';
       }, 150);
 
-      document.getElementById('quiz-counter').textContent = `${currentQ + 1} / ${total}`;
-      document.getElementById('progress-fill').style.width = `${(currentQ / total) * 100}%`;
+      document.getElementById('quiz-counter').textContent = (currentQ + 1) + ' / ' + total;
+      document.getElementById('progress-fill').style.width = ((currentQ / total) * 100) + '%';
 
-      const badge = document.getElementById('quiz-badge');
-      if (q.weight === 1) {
-        badge.textContent = 'PROBABLY';
-        badge.className = 'badge badge-probably';
-      } else {
-        badge.textContent = 'DEFINITELY';
-        badge.className = 'badge badge-definitely';
-      }
+      var badgeMap = {
+        'PROBABLY':   { text: 'PROBABLY',   cls: 'badge badge-probably'   },
+        'DEFINITELY': { text: 'DEFINITELY', cls: 'badge badge-definitely' },
+        'MIRROR':     { text: 'MIRROR',     cls: 'badge badge-mirror'     }
+      };
+      var b = badgeMap[q.badge] || badgeMap['PROBABLY'];
+      var badge = document.getElementById('quiz-badge');
+      badge.textContent = b.text;
+      badge.className   = b.cls;
+
+      var btns = document.getElementById('answer-btns');
+      btns.replaceChildren();
+      q.answers.forEach(function(a, i) {
+        var btn = document.createElement('button');
+        btn.className = 'btn-answer';
+        btn.textContent = a.label;
+        btn.onclick = function() { answer(i); };
+        btns.appendChild(btn);
+      });
     }
 
-    function answer(isYes) {
-      if (isYes) score += QUESTIONS[currentQ].weight;
+    function answer(idx) {
+      score += QUESTIONS[currentQ].answers[idx].score;
       currentQ++;
       if (currentQ < QUESTIONS.length) {
         renderQuestion();
       } else {
-        showResult();
+        finaliseScore();
       }
+    }
+
+    function finaliseScore() {
+      var multipliers = { male: 1.0, female: 1.5, chaos: 0.67 };
+      var m = multipliers[userProfile.gender] || 1.0;
+      score = Math.round(score * m);
+      showResult();
     }
 
     function showScreen(id) {
