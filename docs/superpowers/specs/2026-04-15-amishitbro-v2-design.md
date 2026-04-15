@@ -49,7 +49,15 @@ One combined screen. Two pill-selector rows. "Let's go →" button to start quiz
 **Chaos gender mechanic:** When user selects Chaos, age row is replaced with a single locked pill "Middle age" with a subtle lock icon or wink. Cannot be changed. This is the joke — Chaos people are always middle-aged.
 
 ### Validation
-Both gender and age must be selected before "Let's go →" is enabled. Profile data stored in JS state (`userProfile = { gender, age }`) for future V2 Claude API use. Not used in scoring.
+Both gender and age must be selected before "Let's go →" is enabled. Profile data stored in JS state (`userProfile = { gender, age }`).
+
+### Gender score multiplier
+Applied to the **final score** after all 20 questions:
+- **Male** → ×1.0 (baseline)
+- **Female** → ×1.5 (girls are bigger shit, scientifically proven by this quiz)
+- **Chaos** → ×0.67 (÷1.5 — probably some serious mental issue, we go easy)
+
+Result is `Math.round(rawScore * multiplier)`. Archetype lookup and display use the multiplied score.
 
 ---
 
@@ -136,12 +144,14 @@ Appears after result screen. Always shown to everyone. Button on result screen: 
 **Subheadline (smaller, confident):**
 > We know you are shit. We are here to help.
 
-**Body (serious, warm, slight sarcasm — life coach voice):**
+**Body (sounds like trolling, hits like a punch 10 seconds later):**
+> Look. You took a quiz on the internet to find out if you're a bad person. That's either the most self-aware thing someone can do, or the most delusional. Either way — you're here.
+>
 > Maybe you made a bad step. Maybe the people around you never learned the lesson that turned out to be yours to carry. Maybe your DNA line has been holding that pattern for a long time and it landed on you to break it.
 >
 > The shit isn't funny for long. You already know that.
 >
-> Awareness is the move. You're already here asking the question. That's not nothing.
+> **You're not broken. You're just unfinished.**
 
 **Actions:**
 - "retake" button → back to landing
