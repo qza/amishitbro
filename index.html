@@ -633,11 +633,66 @@
     let currentQ = 0;
     let score = 0;
 
-    function startQuiz() {
+    let userProfile = { gender: null, age: null };
+
+    function makePill(label, value, selected, handler) {
+      var btn = document.createElement('button');
+      btn.className = 'pill' + (selected ? ' selected' : '');
+      btn.dataset.value = value;
+      btn.textContent = label;
+      btn.onclick = function() { handler(btn); };
+      return btn;
+    }
+
+    function selectGender(pill) {
+      document.querySelectorAll('#gender-pills .pill').forEach(function(p) {
+        p.classList.remove('selected');
+      });
+      pill.classList.add('selected');
+      userProfile.gender = pill.dataset.value;
+
+      var agePills = document.getElementById('age-pills');
+
+      if (userProfile.gender === 'chaos') {
+        userProfile.age = 'middle-age';
+        agePills.replaceChildren();
+        var locked = document.createElement('button');
+        locked.className = 'pill locked';
+        locked.textContent = 'Middle age \uD83D\uDE36';
+        agePills.appendChild(locked);
+      } else {
+        if (userProfile.age === 'middle-age') { userProfile.age = null; }
+        agePills.replaceChildren(
+          makePill('Young',       'young',     userProfile.age === 'young',     selectAge),
+          makePill('Man/Woman',   'man-woman', userProfile.age === 'man-woman', selectAge),
+          makePill('Kinda old',   'kinda-old', userProfile.age === 'kinda-old', selectAge)
+        );
+      }
+      updateLetsGo();
+    }
+
+    function selectAge(pill) {
+      document.querySelectorAll('#age-pills .pill').forEach(function(p) {
+        p.classList.remove('selected');
+      });
+      pill.classList.add('selected');
+      userProfile.age = pill.dataset.value;
+      updateLetsGo();
+    }
+
+    function updateLetsGo() {
+      document.getElementById('btn-letsgo').disabled = !(userProfile.gender && userProfile.age);
+    }
+
+    function beginQuiz() {
       currentQ = 0;
       score = 0;
       renderQuestion();
       showScreen('screen-quiz');
+    }
+
+    function startQuiz() {
+      showScreen('screen-profile');
     }
 
     function renderQuestion() {
