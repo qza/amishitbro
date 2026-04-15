@@ -210,6 +210,109 @@
       { text: "You've sabotaged someone else's opportunity, even subtly", weight: 2 },
     ];
 
+    const ARCHETYPES = [
+      {
+        name: "THE DECENT ONE",
+        min: 0, max: 8,
+        color: "#7bf1a8",
+        shape: "circle",
+        taglines: [
+          "wait, you're actually okay? 🤔",
+          "your friends genuinely like you back",
+          "rare species tbh, don't waste it"
+        ],
+        tastes: {
+          friend: "weirdly reliable, refreshing",
+          work: "the one who actually follows through",
+          date: "boring in the best way possible"
+        }
+      },
+      {
+        name: "THE FLAKE",
+        min: 9, max: 16,
+        color: "#a8e063",
+        shape: "blob",
+        taglines: [
+          "loveable but you can't count on them 🫠",
+          "3 'omw' texts and still 40 mins away",
+          "good intentions, chaotic execution"
+        ],
+        tastes: {
+          friend: "fun when they show up",
+          work: "perpetually 'almost done'",
+          date: "exciting until they vanish for a week"
+        }
+      },
+      {
+        name: "THE GHOST",
+        min: 17, max: 24,
+        color: "#4ecdc4",
+        shape: "crescent",
+        taglines: [
+          "present but not really there 👻",
+          "people wonder if they imagined you",
+          "your read receipts say more than you do"
+        ],
+        tastes: {
+          friend: "low maintenance but also just... low",
+          work: "shows up, contributes nothing, disappears",
+          date: "emotionally unavailable starter pack"
+        }
+      },
+      {
+        name: "THE LEECH",
+        min: 25, max: 32,
+        color: "#e96fff",
+        shape: "diamond",
+        taglines: [
+          "takes more than it gives 🩸",
+          "your friends are tired but too nice to say",
+          "energy vampire with good vibes as cover"
+        ],
+        tastes: {
+          friend: "draining after 2 hours",
+          work: "great at delegating their own work",
+          date: "their needs > your needs, always"
+        }
+      },
+      {
+        name: "THE VOLCANO",
+        min: 33, max: 41,
+        color: "#ff6b6b",
+        shape: "triangle",
+        taglines: [
+          "spicy to be around 🌶️",
+          "your friends text in group chats about u",
+          "a walking red flag parade tbh"
+        ],
+        tastes: {
+          friend: "exhausting but never boring",
+          work: "the one who derails standups",
+          date: "a rollercoaster with no seatbelt"
+        }
+      },
+      {
+        name: "THE CHAOS AGENT",
+        min: 42, max: 50,
+        color: "#ff9a3c",
+        shape: "polygon",
+        taglines: [
+          "pure entropy, certified shit 💀",
+          "you leave situations worse than you found them",
+          "people recover from knowing you"
+        ],
+        tastes: {
+          friend: "a trauma bond waiting to happen",
+          work: "HR has a folder with your name on it",
+          date: "therapy material, no cap"
+        }
+      }
+    ];
+
+    function getArchetype(s) {
+      return ARCHETYPES.find(a => s >= a.min && s <= a.max);
+    }
+
     let currentQ = 0;
     let score = 0;
 
