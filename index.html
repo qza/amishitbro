@@ -140,6 +140,105 @@
     .btn-answer:active { transform: scale(0.98); }
     .btn-answer.yes:hover { border-color: #e96fff; color: #e96fff; }
     .btn-answer.no:hover  { border-color: #7bf1a8; color: #7bf1a8; }
+
+    /* Result */
+    #screen-result {
+      text-align: center;
+      gap: 0;
+      padding: 40px 24px;
+    }
+
+    .archetype-shape {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 24px;
+    }
+
+    .shape-circle   { border-radius: 50%; }
+    .shape-blob     { border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%; }
+    .shape-crescent { clip-path: path('M 50 0 A 50 50 0 1 0 50 100 A 30 30 0 1 1 50 0 Z'); }
+    .shape-diamond  { clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); }
+    .shape-triangle { clip-path: polygon(50% 0%, 0% 100%, 100% 100%); }
+    .shape-polygon  { clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 90% 70%, 60% 100%, 40% 100%, 10% 70%, 0% 30%); }
+
+    .archetype-name {
+      font-size: 1.6rem;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      margin-bottom: 6px;
+    }
+
+    .score-line {
+      color: #7bf1a8;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      margin-bottom: 20px;
+    }
+
+    .taglines {
+      list-style: none;
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .taglines li { color: #aaa; font-size: 0.9rem; line-height: 1.4; }
+
+    .taste-section {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid #2a2a3e;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 28px;
+      text-align: left;
+    }
+    .taste-section h3 {
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      color: #555;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+    .taste-row { display: flex; gap: 8px; margin-bottom: 6px; font-size: 0.82rem; }
+    .taste-label { color: #666; min-width: 64px; flex-shrink: 0; }
+    .taste-value { color: #ccc; }
+
+    .result-actions {
+      display: flex;
+      gap: 12px;
+      width: 100%;
+      margin-bottom: 24px;
+    }
+    .btn-save {
+      flex: 1;
+      padding: 13px;
+      background: linear-gradient(90deg, #e96fff, #7bf1a8);
+      border: none;
+      border-radius: 12px;
+      color: #0d0d1a;
+      font-weight: 800;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: opacity 0.15s, transform 0.1s;
+    }
+    .btn-save:hover  { opacity: 0.88; }
+    .btn-save:active { transform: scale(0.97); }
+
+    .btn-retake {
+      flex: 1;
+      padding: 13px;
+      background: transparent;
+      border: 1px solid #2a2a3e;
+      border-radius: 12px;
+      color: #888;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .btn-retake:hover { border-color: #555; color: #bbb; }
   </style>
 </head>
 <body>
@@ -171,7 +270,38 @@
   </section>
 
   <!-- Screen 3: Result (populated by JS) -->
-  <section id="screen-result" class="screen"></section>
+  <section id="screen-result" class="screen">
+    <div class="archetype-shape" id="result-shape"></div>
+    <h2 class="archetype-name" id="result-name"></h2>
+    <p class="score-line" id="result-score"></p>
+    <ul class="taglines" id="result-taglines">
+      <li id="tagline-0"></li>
+      <li id="tagline-1"></li>
+      <li id="tagline-2"></li>
+    </ul>
+    <div class="taste-section">
+      <h3>what it's like...</h3>
+      <div class="taste-row">
+        <span class="taste-label">as a friend</span>
+        <span class="taste-value" id="taste-friend"></span>
+      </div>
+      <div class="taste-row">
+        <span class="taste-label">at work</span>
+        <span class="taste-value" id="taste-work"></span>
+      </div>
+      <div class="taste-row">
+        <span class="taste-label">to date</span>
+        <span class="taste-value" id="taste-date"></span>
+      </div>
+    </div>
+    <div class="result-actions">
+      <button class="btn-save" onclick="downloadCard()">⬇ save card</button>
+      <button class="btn-retake" onclick="startQuiz()">retake</button>
+    </div>
+    <a class="donate-link" href="https://ko-fi.com/PLACEHOLDER" target="_blank" rel="noopener">
+      ☕ if this hit too hard, buy me a coffee
+    </a>
+  </section>
 
   <script>
     const QUESTIONS = [
@@ -363,8 +493,32 @@
     }
 
     function showResult() {
-      // implemented in Task 5
-      alert('Score: ' + score);
+      const arch = getArchetype(score);
+
+      const shape = document.getElementById('result-shape');
+      shape.style.background = arch.color;
+      shape.className = 'archetype-shape shape-' + arch.shape;
+
+      const nameEl = document.getElementById('result-name');
+      nameEl.textContent = arch.name;
+      nameEl.style.color = arch.color;
+
+      document.getElementById('result-score').textContent = 'SHIT SCORE: ' + score + ' / 50';
+
+      document.getElementById('tagline-0').textContent = arch.taglines[0];
+      document.getElementById('tagline-1').textContent = arch.taglines[1];
+      document.getElementById('tagline-2').textContent = arch.taglines[2];
+
+      document.getElementById('taste-friend').textContent = arch.tastes.friend;
+      document.getElementById('taste-work').textContent   = arch.tastes.work;
+      document.getElementById('taste-date').textContent   = arch.tastes.date;
+
+      showScreen('screen-result');
+    }
+
+    function downloadCard() {
+      // implemented in Task 6
+      alert('Card download — coming next!');
     }
   </script>
 </body>
