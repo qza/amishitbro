@@ -66,6 +66,80 @@
       transition: color 0.2s;
     }
     .donate-link:hover { color: #888; }
+
+    /* Quiz */
+    #screen-quiz { gap: 0; padding: 24px 20px; justify-content: flex-start; }
+
+    .quiz-header {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .quiz-counter { color: #555; font-size: 0.75rem; letter-spacing: 0.06em; }
+
+    .badge {
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+    .badge-probably  { background: rgba(163, 230, 99, 0.15); color: #a8e063; }
+    .badge-definitely { background: rgba(233, 111, 255, 0.15); color: #e96fff; }
+
+    .progress-track {
+      width: 100%;
+      height: 3px;
+      background: #1f2937;
+      border-radius: 2px;
+      margin-bottom: 36px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #e96fff, #7bf1a8);
+      border-radius: 2px;
+      transition: width 0.3s ease;
+    }
+
+    .question-text {
+      width: 100%;
+      font-size: 1.15rem;
+      font-weight: 700;
+      line-height: 1.45;
+      color: #f0f0f0;
+      margin-bottom: 32px;
+      min-height: 80px;
+      transition: opacity 0.15s;
+    }
+
+    .answer-btns {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .btn-answer {
+      width: 100%;
+      padding: 14px 20px;
+      border: 1px solid #2a2a3e;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.03);
+      color: #e0e0e0;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: left;
+      transition: background 0.15s, border-color 0.15s, transform 0.1s;
+    }
+    .btn-answer:hover { background: rgba(255,255,255,0.07); border-color: #444; }
+    .btn-answer:active { transform: scale(0.98); }
+    .btn-answer.yes:hover { border-color: #e96fff; color: #e96fff; }
+    .btn-answer.no:hover  { border-color: #7bf1a8; color: #7bf1a8; }
   </style>
 </head>
 <body>
@@ -81,7 +155,20 @@
   </section>
 
   <!-- Screen 2: Quiz (populated by JS) -->
-  <section id="screen-quiz" class="screen"></section>
+  <section id="screen-quiz" class="screen">
+    <div class="quiz-header">
+      <span class="quiz-counter" id="quiz-counter">1 / 30</span>
+      <span class="badge badge-probably" id="quiz-badge">PROBABLY</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+    </div>
+    <p class="question-text" id="question-text"></p>
+    <div class="answer-btns">
+      <button class="btn-answer yes" onclick="answer(true)">✓ yeah bro, no cap</button>
+      <button class="btn-answer no"  onclick="answer(false)">✗ nah that's not me</button>
+    </div>
+  </section>
 
   <!-- Screen 3: Result (populated by JS) -->
   <section id="screen-result" class="screen"></section>
@@ -123,13 +210,58 @@
       { text: "You've sabotaged someone else's opportunity, even subtly", weight: 2 },
     ];
 
+    let currentQ = 0;
+    let score = 0;
+
+    function startQuiz() {
+      currentQ = 0;
+      score = 0;
+      renderQuestion();
+      showScreen('screen-quiz');
+    }
+
+    function renderQuestion() {
+      const q = QUESTIONS[currentQ];
+      const total = QUESTIONS.length;
+
+      const qText = document.getElementById('question-text');
+      qText.style.opacity = '0';
+      setTimeout(() => {
+        qText.textContent = q.text;
+        qText.style.opacity = '1';
+      }, 150);
+
+      document.getElementById('quiz-counter').textContent = `${currentQ + 1} / ${total}`;
+      document.getElementById('progress-fill').style.width = `${(currentQ / total) * 100}%`;
+
+      const badge = document.getElementById('quiz-badge');
+      if (q.weight === 1) {
+        badge.textContent = 'PROBABLY';
+        badge.className = 'badge badge-probably';
+      } else {
+        badge.textContent = 'DEFINITELY';
+        badge.className = 'badge badge-definitely';
+      }
+    }
+
+    function answer(isYes) {
+      if (isYes) score += QUESTIONS[currentQ].weight;
+      currentQ++;
+      if (currentQ < QUESTIONS.length) {
+        renderQuestion();
+      } else {
+        showResult();
+      }
+    }
+
     function showScreen(id) {
       document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
       document.getElementById(id).classList.add('active');
     }
 
-    function startQuiz() {
-      showScreen('screen-quiz');
+    function showResult() {
+      // implemented in Task 5
+      alert('Score: ' + score);
     }
   </script>
 </body>
