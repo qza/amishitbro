@@ -742,6 +742,7 @@
       var multipliers = { male: 1.0, female: 1.5, chaos: 0.67 };
       var m = multipliers[userProfile.gender] || 1.0;
       score = Math.round(score * m);
+      score = Math.max(-10, Math.min(30, score));
       showResult();
     }
 
