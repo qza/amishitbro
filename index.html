@@ -236,48 +236,6 @@
     }
     .btn-sowhat:hover { border-color: #7bf1a8; color: #7bf1a8; }
 
-    /* Closing */
-    #screen-closing {
-      text-align: center;
-      gap: 0;
-      padding: 48px 24px 40px;
-    }
-
-    .closing-headline {
-      font-size: clamp(1.8rem, 8vw, 2.8rem);
-      font-weight: 900;
-      background: linear-gradient(90deg, #e96fff, #7bf1a8);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1.1;
-      margin-bottom: 12px;
-    }
-
-    .closing-hook {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 32px;
-      letter-spacing: 0.02em;
-    }
-
-    .closing-body {
-      color: #aaa;
-      font-size: 0.9rem;
-      line-height: 1.7;
-      text-align: left;
-      margin-bottom: 36px;
-    }
-
-    .closing-body p { margin-bottom: 16px; }
-    .closing-body p:last-child { margin-bottom: 0; }
-
-    .closing-body strong {
-      color: #fff;
-      font-weight: 700;
-    }
-
     .shit-sm  { display: block; width: 36px;  height: 42px;  }
     .shit-md  { display: block; width: 72px;  height: 84px;  }
     .shit-lg  { display: block; width: 120px; height: 140px; }
@@ -289,56 +247,6 @@
       margin: 20px 0 8px;
     }
 
-    /* Closing screen — scenes */
-    .scene {
-      width: 100%;
-      display: flex;
-      gap: 20px;
-      align-items: center;
-      margin-bottom: 16px;
-    }
-    .scene-right { flex-direction: row-reverse; }
-    .scene-img {
-      width: 120px;
-      height: 120px;
-      object-fit: cover;
-      border-radius: 12px;
-      flex-shrink: 0;
-    }
-    .scene-copy { flex: 1; }
-    .scene-copy p {
-      color: #aaa;
-      font-size: 0.88rem;
-      line-height: 1.65;
-      margin: 0;
-    }
-    .scene-kofi {
-      display: block;
-      text-align: center;
-      color: #444;
-      font-size: 0.78rem;
-      text-decoration: none;
-      margin: 8px 0 28px;
-      transition: color 0.2s;
-    }
-    .scene-kofi:hover { color: #888; }
-
-    /* Bookshelf */
-    .bookshelf-section { width: 100%; margin-bottom: 32px; }
-    .bookshelf-header {
-      color: #555;
-      font-size: 0.78rem;
-      letter-spacing: 0.08em;
-      text-align: center;
-      margin-bottom: 16px;
-      font-style: italic;
-    }
-    .bookshelf {
-      display: flex;
-      gap: 10px;
-      overflow-x: auto;
-      padding-bottom: 8px;
-    }
     .book {
       flex-shrink: 0;
       width: 80px;
@@ -378,28 +286,6 @@
       color: rgba(255,255,255,0.6);
       margin: 0;
       font-style: italic;
-    }
-
-    /* Closing footer */
-    .closing-footer {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-      padding-top: 8px;
-      border-top: 1px solid #1f2937;
-      margin-top: 8px;
-    }
-    .footer-tagline {
-      color: #444;
-      font-size: 0.78rem;
-      letter-spacing: 0.08em;
-    }
-
-    @media (max-width: 520px) {
-      .scene, .scene-right { flex-direction: column; align-items: flex-start; }
-      .scene-img { width: 100%; height: 160px; }
     }
 
     /* ── V4 Profile: breadcrumb + circle selector ─────────────────── */
@@ -556,6 +442,123 @@
     }
     .btn-go:hover { transform: scale(1.04); opacity: 0.92; }
     .btn-go:active { transform: scale(0.97); }
+
+    /* ── V4 Closing: carousel ─────────────────────────────────────── */
+
+    #screen-closing {
+      text-align: center;
+      gap: 0;
+      padding: 0;
+      width: 100%;
+      max-width: 100%;
+      overflow: hidden;
+    }
+
+    .carousel-wrap {
+      width: 100%;
+      max-width: 480px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 24px 32px;
+    }
+
+    .carousel-slide {
+      width: 100%;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      text-align: center;
+    }
+    .carousel-slide.active {
+      display: flex;
+    }
+
+    .carousel-img {
+      max-width: 260px;
+      width: 100%;
+      border-radius: 16px;
+      object-fit: cover;
+    }
+
+    .carousel-copy {
+      max-width: 420px;
+      color: #aaa;
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+    .carousel-copy p { margin: 0; }
+
+    .carousel-kofi {
+      display: block;
+      color: #444;
+      font-size: 0.78rem;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .carousel-kofi:hover { color: #888; }
+
+    .carousel-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .carousel-arrow {
+      background: transparent;
+      border: 1px solid #2a2a3e;
+      color: #555;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.15s, color 0.15s;
+      flex-shrink: 0;
+    }
+    .carousel-arrow:hover { border-color: #555; color: #bbb; }
+    .carousel-arrow:disabled { opacity: 0.2; cursor: default; }
+
+    .carousel-dots {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+    .carousel-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #2a2a3e;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .carousel-dot.active {
+      background: #e96fff;
+      transform: scale(1.4);
+    }
+
+    .btn-experts {
+      display: inline-block;
+      padding: 12px 28px;
+      background: transparent;
+      border: 1px solid #e96fff;
+      border-radius: 40px;
+      color: #e96fff;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      letter-spacing: 0.03em;
+      transition: background 0.2s, color 0.2s;
+      margin-top: 4px;
+    }
+    .btn-experts:hover { background: rgba(233,111,255,0.1); }
   </style>
 </head>
 <body>
@@ -660,104 +663,70 @@
     </a>
   </section>
 
-  <!-- Screen 5: Closing -->
+  <!-- Screen 4: Closing carousel -->
   <section id="screen-closing" class="screen">
-    <h2 class="closing-headline">SO WHAT IF YOU ARE SHIT!</h2>
-    <p class="closing-hook">We know you are shit. We are here to help.</p>
+    <div class="carousel-wrap">
 
-    <!-- Scene 1 -->
-    <div class="scene scene-left">
-      <img class="scene-img" src="assets/jesus-hand.png" alt="Jesus offering a hand">
-      <div class="scene-copy">
-        <p>Look. You took a quiz on the internet to find out if you're a bad person.<br>That already makes you better than 90% of actual shits — they never ask.<br>We see you. We're here.</p>
-      </div>
-    </div>
-    <a class="scene-kofi" href="https://ko-fi.com/kokozoo" target="_blank" rel="noopener">☕ this helped? buy me a coffee</a>
-
-    <!-- Scene 2 -->
-    <div class="scene scene-right">
-      <img class="scene-img" src="assets/jesus-toilet.png" alt="Jesus sitting with you">
-      <div class="scene-copy">
-        <p>Every shit has its moment. You sit with it.<br>You don't run from it. You don't Instagram it.<br>You just... handle it. Jesus sat with people in worse places than this.<br>He didn't even complain about the smell.</p>
-      </div>
-    </div>
-    <a class="scene-kofi" href="https://ko-fi.com/kokozoo" target="_blank" rel="noopener">☕ this helped? buy me a coffee</a>
-
-    <!-- Scene 3 -->
-    <div class="scene scene-left">
-      <img class="scene-img" src="assets/jesus-running.png" alt="Jesus running forward">
-      <div class="scene-copy">
-        <p>But at some point you get up.<br>Because if you don't start moving, the shit follows you.<br>It gets in the car. It gets on the plane. It shows up at your next relationship.<br>Run. Laugh. Point forward. That's the whole method.</p>
-      </div>
-    </div>
-    <a class="scene-kofi" href="https://ko-fi.com/kokozoo" target="_blank" rel="noopener">☕ this helped? buy me a coffee</a>
-
-    <!-- Scene 4 -->
-    <div class="scene scene-right">
-      <img class="scene-img" src="assets/jesus-horizon.png" alt="Jesus facing the horizon">
-      <div class="scene-copy">
-        <p>Stop looking at your shit.<br>Seriously. Turn around. Face the sun.<br>The shit is still there, yes. But so is everything else.<br>You're not the shit. You're the one standing in front of it.</p>
-      </div>
-    </div>
-    <a class="scene-kofi" href="https://ko-fi.com/kokozoo" target="_blank" rel="noopener">☕ this helped? buy me a coffee</a>
-
-    <!-- Scene 5 -->
-    <div class="scene scene-left">
-      <img class="scene-img" src="assets/jesus-book.png" alt="Jesus holding a book">
-      <div class="scene-copy">
-        <p>And if none of that worked — the experts have thoughts.</p>
-      </div>
-    </div>
-    <a class="scene-kofi" href="https://ko-fi.com/kokozoo" target="_blank" rel="noopener">☕ this helped? buy me a coffee</a>
-
-    <!-- Bookshelf -->
-    <div class="bookshelf-section">
-      <p class="bookshelf-header">Further reading. Not really.</p>
-      <div class="bookshelf">
-        <div class="book" style="--book-color: #c0392b;" onclick="startQuiz()">
-          <div class="book-spine"></div>
-          <div class="book-face">
-            <p class="book-title">How To Grow Eat-Shit Kids For Famous Parents</p>
-            <p class="book-author">Dr. Karen Obviously</p>
-          </div>
+      <!-- Slide 1 -->
+      <div class="carousel-slide active" data-slide="0">
+        <img class="carousel-img" src="assets/jesus-hand.png" alt="Jesus offering a hand">
+        <div class="carousel-copy">
+          <p>Look. You took a quiz on the internet to find out if you're a bad person.<br>That already makes you better than 90% of actual shits &#8212; they never ask.<br>We see you. We're here.</p>
         </div>
-        <div class="book" style="--book-color: #2c3e50;" onclick="startQuiz()">
-          <div class="book-spine"></div>
-          <div class="book-face">
-            <p class="book-title">Is This Shit Real Or Not: Expert Analysis</p>
-            <p class="book-author">Prof. J. Doesntmatter PhD</p>
-          </div>
-        </div>
-        <div class="book" style="--book-color: #f39c12;" onclick="startQuiz()">
-          <div class="book-spine"></div>
-          <div class="book-face">
-            <p class="book-title">Carrying Your Shit Across Three Continents</p>
-            <p class="book-author">A guy named Dave</p>
-          </div>
-        </div>
-        <div class="book" style="--book-color: #27ae60;" onclick="startQuiz()">
-          <div class="book-spine"></div>
-          <div class="book-face">
-            <p class="book-title">The Subtle Art of Not Being A Complete Shit</p>
-            <p class="book-author">Someone's Therapist</p>
-          </div>
-        </div>
-        <div class="book" style="--book-color: #1a1a2e;" onclick="startQuiz()">
-          <div class="book-spine"></div>
-          <div class="book-face">
-            <p class="book-title">Shit-Free in 30 Days: A Memoir</p>
-            <p class="book-author">Anonymous (obviously)</p>
-          </div>
-        </div>
+        <a class="carousel-kofi" href="https://ko-fi.com/kokozoo" target="_blank" rel="noopener">&#9749; this helped? buy me a coffee</a>
       </div>
-    </div>
 
-    <!-- Footer -->
-    <footer class="closing-footer">
-      <p class="footer-tagline">Who reads this shit anyway?</p>
-      <a class="donate-link" href="https://ko-fi.com/kokozoo" target="_blank" rel="noopener">☕ if this hit different, buy me a coffee</a>
-      <button class="btn-primary" onclick="startQuiz()" style="margin-top:16px">retake the quiz →</button>
-    </footer>
+      <!-- Slide 2 -->
+      <div class="carousel-slide" data-slide="1">
+        <img class="carousel-img" src="assets/jesus-toilet.png" alt="Jesus sitting with you">
+        <div class="carousel-copy">
+          <p>Every shit has its moment. You sit with it.<br>You don't run from it. You don't Instagram it.<br>You just... handle it. Jesus sat with people in worse places than this.<br>He didn't even complain about the smell.</p>
+        </div>
+        <a class="carousel-kofi" href="https://ko-fi.com/kokozoo" target="_blank" rel="noopener">&#9749; this helped? buy me a coffee</a>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="carousel-slide" data-slide="2">
+        <img class="carousel-img" src="assets/jesus-running.png" alt="Jesus running forward">
+        <div class="carousel-copy">
+          <p>But at some point you get up.<br>Because if you don't start moving, the shit follows you.<br>It gets in the car. It gets on the plane. It shows up at your next relationship.<br>Run. Laugh. Point forward. That's the whole method.</p>
+        </div>
+        <a class="carousel-kofi" href="https://ko-fi.com/kokozoo" target="_blank" rel="noopener">&#9749; this helped? buy me a coffee</a>
+      </div>
+
+      <!-- Slide 4 -->
+      <div class="carousel-slide" data-slide="3">
+        <img class="carousel-img" src="assets/jesus-horizon.png" alt="Jesus facing the horizon">
+        <div class="carousel-copy">
+          <p>Stop looking at your shit.<br>Seriously. Turn around. Face the sun.<br>The shit is still there, yes. But so is everything else.<br>You're not the shit. You're the one standing in front of it.</p>
+        </div>
+        <a class="carousel-kofi" href="https://ko-fi.com/kokozoo" target="_blank" rel="noopener">&#9749; this helped? buy me a coffee</a>
+      </div>
+
+      <!-- Slide 5 -->
+      <div class="carousel-slide" data-slide="4">
+        <img class="carousel-img" src="assets/jesus-book.png" alt="Jesus holding a book">
+        <div class="carousel-copy">
+          <p>And if none of that worked &#8212; the experts have thoughts.</p>
+        </div>
+        <a class="carousel-kofi" href="https://ko-fi.com/kokozoo" target="_blank" rel="noopener">&#9749; this helped? buy me a coffee</a>
+        <button class="btn-experts" onclick="showScreen('screen-books')">&#8594; the experts have thoughts</button>
+      </div>
+
+      <!-- Navigation -->
+      <div class="carousel-nav">
+        <button class="carousel-arrow" id="carousel-prev" onclick="carouselGo(-1)" disabled>&#8249;</button>
+        <div class="carousel-dots" id="carousel-dots">
+          <span class="carousel-dot active" onclick="carouselGoTo(0)"></span>
+          <span class="carousel-dot" onclick="carouselGoTo(1)"></span>
+          <span class="carousel-dot" onclick="carouselGoTo(2)"></span>
+          <span class="carousel-dot" onclick="carouselGoTo(3)"></span>
+          <span class="carousel-dot" onclick="carouselGoTo(4)"></span>
+        </div>
+        <button class="carousel-arrow" id="carousel-next" onclick="carouselGo(1)">&#8250;</button>
+      </div>
+
+    </div>
   </section>
 
   <script>
@@ -1126,8 +1095,9 @@
     }
 
     function showScreen(id) {
-      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.screen').forEach(function(s) { s.classList.remove('active'); });
       document.getElementById(id).classList.add('active');
+      if (id === 'screen-closing') { carouselGoTo(0); }
     }
 
     var SHIT_TIERS = [
@@ -1226,6 +1196,45 @@
         URL.revokeObjectURL(url);
       }, 'image/png');
     }
+
+    var carouselIdx = 0;
+
+    function carouselGoTo(idx) {
+      var slides = document.querySelectorAll('.carousel-slide');
+      if (!slides.length) return;
+      var dots   = document.querySelectorAll('.carousel-dot');
+      slides.forEach(function(s) { s.classList.remove('active'); });
+      dots.forEach(function(d)   { d.classList.remove('active'); });
+      carouselIdx = Math.max(0, Math.min(idx, slides.length - 1));
+      slides[carouselIdx].classList.add('active');
+      dots[carouselIdx].classList.add('active');
+      document.getElementById('carousel-prev').disabled = (carouselIdx === 0);
+      document.getElementById('carousel-next').disabled = (carouselIdx === slides.length - 1);
+    }
+
+    function carouselGo(dir) {
+      carouselGoTo(carouselIdx + dir);
+    }
+
+    // Swipe support for mobile
+    (function() {
+      var startX = null;
+      document.addEventListener('touchstart', function(e) {
+        if (e.target.closest && e.target.closest('#screen-closing')) {
+          startX = e.touches[0].clientX;
+        }
+      }, { passive: true });
+      document.addEventListener('touchend', function(e) {
+        if (startX === null) return;
+        if (!document.getElementById('screen-closing').classList.contains('active')) {
+          startX = null;
+          return;
+        }
+        var dx = e.changedTouches[0].clientX - startX;
+        if (Math.abs(dx) > 40) carouselGo(dx < 0 ? 1 : -1);
+        startX = null;
+      }, { passive: true });
+    })();
   </script>
 </body>
 </html>
