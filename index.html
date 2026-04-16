@@ -499,7 +499,7 @@
 
     .carousel-img { max-width: 300px; width: 100%; border-radius: 16px; object-fit: cover; }
 
-    .carousel-copy { max-width: 420px; color: #f0f0f0; font-size: 1.05rem; line-height: 1.8; }
+    .carousel-copy { max-width: 420px; color: #f0f0f0; font-size: 1.05rem; line-height: 1.8; min-height: 220px; display: flex; align-items: center; justify-content: center; }
     .carousel-copy p { margin: 0; }
 
     .carousel-kofi { display: block; color: #888; font-size: 0.82rem; text-decoration: none; transition: color 0.2s; }
@@ -795,7 +795,7 @@
         'result.sowhat':    'i šta sad? \u2192',
         'result.donate':    '\u2615 ako te je pogodilo, može kafa?',
         'result.score':     'KOLIKO SRANJA',
-        'result.headline':  '{nick}, malo ti jedno',
+        'result.headline':  'Jedno malo ti, {nick},',
         'closing.kofi':     '\u2615 pomoglo? počasti me kafom',
         'closing.slide1':   'Slušaj. Rešio/la si da uradiš kviz na internetu da saznaš da li si loša osoba. To te već čini boljim/om od 90% pravih govnara \u2014 oni nikad ne pitaju. Vidimo te. Tu smo, upravo zbog tebe!',
         'closing.slide2':   'Svako govno ima svoj highlight. Sedneš s njim. Ne bežiš od njega. Ne staviš ga na Instagram. Samo... rešavaš. Isus je sedeo s ljudima na gorim mestima od ovog. Nije se ni zalio na miris.',
@@ -1267,6 +1267,7 @@
 
     currentLang = detectLang();
     applyLang();
+
   </script>
 </body>
 </html>
