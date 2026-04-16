@@ -924,6 +924,8 @@
     var profileStep = 'gender';
 
     function detectLang() {
+      var param = new URLSearchParams(window.location.search).get('lang');
+      if (param === 'sr' || param === 'en') return param;
       var saved = localStorage.getItem('lang');
       if (saved === 'sr' || saved === 'en') return saved;
       var nav = (navigator.language || '').toLowerCase();
