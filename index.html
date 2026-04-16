@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Am I Shit Bro?</title>
-  <meta name="description" content="A brutally honest personality quiz. Find out if you're shit, bro. Answer 10 questions and get your verdict.">
+  <meta name="description" content="A brutally honest personality quiz. Find out if you're shit, bro. 10 random questions, brutal truth.">
 
   <!-- Open Graph / Facebook / Viber / WhatsApp -->
   <meta property="og:type" content="website">
@@ -614,7 +614,7 @@
 
   <section id="screen-landing" class="screen active">
     <h1 class="title" data-i18n="landing.title">AM I SHIT BRO?</h1>
-    <p class="subtitle" data-i18n="landing.subtitle">20 questions. brutal truth. no cap.</p>
+    <p class="subtitle" data-i18n="landing.subtitle">10 questions. brutal truth. no cap.</p>
     <button class="btn-primary" onclick="startQuiz()" data-i18n="landing.cta">find out &#8594;</button>
     <a class="donate-link" href="https://ko-fi.com/zeebrojungle" target="_blank" rel="noopener" data-i18n="landing.donate">
       &#9749; if this hits too hard, buy me a coffee
@@ -669,6 +669,15 @@
     </div>
 
     <button class="btn-go" id="btn-go" onclick="beginQuiz()" data-i18n="profile.go">go! &#8594;</button>
+
+    <label id="brutal-toggle-wrap" style="display:flex;align-items:center;gap:8px;cursor:pointer;color:#555;font-size:0.8rem;letter-spacing:0.06em;user-select:none;margin-top:20px;">
+      <span style="position:relative;display:inline-block;width:36px;height:20px;">
+        <input type="checkbox" id="brutal-checkbox" style="opacity:0;width:0;height:0;position:absolute;" onchange="updateBrutalToggle()">
+        <span id="brutal-track" style="position:absolute;inset:0;border-radius:20px;background:#1f2937;transition:background 0.2s;"></span>
+        <span id="brutal-thumb" style="position:absolute;top:3px;left:3px;width:14px;height:14px;border-radius:50%;background:#444;transition:transform 0.2s,background 0.2s;"></span>
+      </span>
+      <span data-i18n="landing.brutal">be brutal</span>
+    </label>
   </section>
 
   <section id="screen-quiz" class="screen">
@@ -725,7 +734,7 @@
         <img class="carousel-img" src="assets/jesus-book.png" alt="Jesus holding a book">
         <div class="carousel-copy" style="min-height:0"><p id="closing-slide-5"></p></div>
         <a class="carousel-kofi" href="https://ko-fi.com/zeebrojungle" target="_blank" rel="noopener" data-i18n="closing.kofi">&#9749; this helped? buy me a coffee</a>
-        <button class="btn-experts" onclick="showScreen('screen-books')" data-i18n="closing.experts">&#8594; the experts have thoughts</button>
+        <button class="btn-experts" onclick="showScreen('screen-books')" data-i18n="closing.experts">&#8594; professional books</button>
       </div>
       <div class="carousel-nav">
         <button class="carousel-arrow" id="carousel-prev" onclick="carouselGo(-1)" disabled>&#8249;</button>
@@ -763,8 +772,9 @@
     var STRINGS = {
       en: {
         'landing.title':    'AM I SHIT BRO?',
-        'landing.subtitle': '20 questions. brutal truth. no cap.',
+        'landing.subtitle': '10 questions. brutal truth. no cap.',
         'landing.cta':      'find out \u2192',
+        'landing.brutal':   'be brutal',
         'landing.donate':   '\u2615 if this hits too hard, buy me a coffee',
         'profile.male':     'Male',
         'profile.female':   'Female',
@@ -788,7 +798,7 @@
         'closing.slide3':   'But at some point you get up. Because if you don\'t start moving, the shit follows you. It gets in the car. It gets on the plane. It shows up at your next relationship. Run. Laugh. Point forward. That\'s the whole method.',
         'closing.slide4':   'Stop looking at your shit. Seriously. Turn around. Face the sun. The shit is still there, yes. But so is everything else. You\'re not the shit. You\'re the one standing in front of it.',
         'closing.slide5':   'And if none of that worked \u2014 the experts have thoughts.',
-        'closing.experts':  '\u2192 the experts have thoughts',
+        'closing.experts':  '\u2192 professional books',
         'books.header':     'Further reading. Not really.',
         'books.tagline':    'Who reads this shit anyway?',
         'books.back':       '\u2190 back',
@@ -810,8 +820,9 @@
       },
       sr: {
         'landing.title':    'JESAM LI GOVNO, BRATE?',
-        'landing.subtitle': '20 pitanja. brutalna istina. bez laži.',
+        'landing.subtitle': '10 pitanja. brutalna istina. bez laži.',
         'landing.cta':      'saznam \u2192',
+        'landing.brutal':   'budi brutalan',
         'landing.donate':   '\u2615 ako te je ubolo, može kafa?',
         'profile.male':     'Muško',
         'profile.female':   'Žensko',
@@ -835,7 +846,7 @@
         'closing.slide3':   'Ali u nekom trenutku ustaneš. Jer ako se ne pomereš, sranje te prati. Uđe u kola. Ukrca se u avion. Pojavi se u sledećoj vezi. Trči. Smej se. Gledaj napred. To je cela fora.',
         'closing.slide4':   'Prestani da gledaš u svoje sranje. Ozbiljno. Okreni se. Pogledaj u sunce. Govno je još uvek tu, da. Ali i sve ostalo. Nisi ti sranje. Ti si onaj/ona koji stoji ispred njega.',
         'closing.slide5':   'A ako ništa od toga nije pomoglo \u2014 stručnjaci znaju najbolje.',
-        'closing.experts':  '\u2192 stručnjaci imaju mišljenje',
+        'closing.experts':  '\u2192 stručna literatura',
         'books.header':     'Nastavljamo dalje. Ma jok bre.',
         'books.tagline':    'Ko čita bre ovo sranje?',
         'books.back':       '\u2190 nazad',
@@ -859,7 +870,7 @@
 
     var QUESTIONS = {
       en: [
-        { text: "Do you collect Tarzans in the forest between anus hole and balls?", badge: "DEFINITELY", answers: [{ label: "yeah", score: 2 }, { label: "nah", score: 0 }] },
+        { text: "Do you collect Tarzans in the forest between anus hole and balls?", badge: "DEFINITELY", brutal: true, answers: [{ label: "yeah", score: 2 }, { label: "nah", score: 0 }] },
         { text: 'Have people told you "stop shitting on me"?', badge: "DEFINITELY", answers: [{ label: "yeah", score: 2 }, { label: "nah", score: 0 }] },
         { text: "Do you do that ass movement that lifts your back upward, ready to make shit?", badge: "PROBABLY", answers: [{ label: "yeah", score: 1 }, { label: "nah", score: 0 }] },
         { text: "Do you spin your head round making disgusted faces?", badge: "PROBABLY", answers: [{ label: "yeah", score: 1 }, { label: "nah", score: 0 }] },
@@ -867,7 +878,7 @@
         { text: "Do you buy watches for all your friends and you're not a football player?", badge: "PROBABLY", answers: [{ label: "yeah", score: 1 }, { label: "nah", score: 0 }] },
         { text: 'Have you ever responded: "who gives a damn if you are shit or not?"', badge: "DEFINITELY", answers: [{ label: "yeah", score: 2 }, { label: "nah", score: 0 }] },
         { text: 'Do you say often: "stop looking at me you shit!"', badge: "MIRROR", answers: [{ label: "sometimes", score: -1 }, { label: "yes", score: 0 }, { label: "no", score: 2 }] },
-        { text: "Do you often find material in your anus bag (hard to clean spot)?", badge: "MIRROR", answers: [{ label: "yeah", score: -1 }, { label: "nah", score: 1 }] },
+        { text: "Do you often find material in your anus bag (hard to clean spot)?", badge: "MIRROR", brutal: true, answers: [{ label: "yeah", score: -1 }, { label: "nah", score: 1 }] },
         { text: "Are you aware that you are shit sometimes?", badge: "MIRROR", answers: [{ label: "yeah", score: -1 }, { label: "nah", score: 2 }] },
         { text: "Do you find that shit funny and tasty?", badge: "MIRROR", answers: [{ label: "yeah", score: -1 }, { label: "nah", score: 1 }] },
         { text: "Am I shit or you are shit?", badge: "MIRROR", answers: [{ label: "both", score: 0 }, { label: "you", score: -1 }, { label: "I", score: 2 }] },
@@ -881,7 +892,7 @@
         { text: "Do you ever say sorry you shit?", badge: "MIRROR", answers: [{ label: "yeah", score: 1 }, { label: "not like that", score: -1 }] }
       ],
       sr: [
-        { text: "Da li sakupljaš Tarzane u šumi između rupice i muda?", badge: "DEFINITELY", answers: [{ label: "da", score: 2 }, { label: "ne", score: 0 }] },
+        { text: "Da li sakupljaš Tarzane u šumi između rupice i muda?", badge: "DEFINITELY", brutal: true, answers: [{ label: "da", score: 2 }, { label: "ne", score: 0 }] },
         { text: 'Da li su ti ljudi govorili "prestani da kenjaš po meni"?', badge: "DEFINITELY", answers: [{ label: "da", score: 2 }, { label: "ne", score: 0 }] },
         { text: "Da li praviš onaj pokret zadnjicom koji podiže leđa uvis, kao da se spremaš da napraviš sranje?", badge: "PROBABLY", answers: [{ label: "da", score: 1 }, { label: "ne", score: 0 }] },
         { text: "Da li vrtiš glavom praveći zgađene grimase?", badge: "PROBABLY", answers: [{ label: "da", score: 1 }, { label: "ne", score: 0 }] },
@@ -889,7 +900,7 @@
         { text: "Da li kupuješ satove svim prijateljima, a nisi fudbaler?", badge: "PROBABLY", answers: [{ label: "da", score: 1 }, { label: "ne", score: 0 }] },
         { text: 'Da li si ikad odgovorio/la: "koga briga da li si sranje ili nisi?"', badge: "DEFINITELY", answers: [{ label: "da", score: 2 }, { label: "ne", score: 0 }] },
         { text: 'Da li često govoriš: "prestani da me gledaš, govno jedno!"', badge: "MIRROR", answers: [{ label: "ponekad", score: -1 }, { label: "da", score: 0 }, { label: "ne", score: 2 }] },
-        { text: "Da li često pronađeš materijal u čmarnoj kesici, onom teškom mestu za čišćenje?", badge: "MIRROR", answers: [{ label: "da", score: -1 }, { label: "ne", score: 1 }] },
+        { text: "Da li često pronađeš materijal u čmarnoj kesici, onom teškom mestu za čišćenje?", badge: "MIRROR", brutal: true, answers: [{ label: "da", score: -1 }, { label: "ne", score: 1 }] },
         { text: "Da li si svestan/na da si i sam ponekad govno?", badge: "MIRROR", answers: [{ label: "da", score: -1 }, { label: "ne", score: 2 }] },
         { text: "Da li ti je govno smešno?", badge: "MIRROR", answers: [{ label: "da", score: -1 }, { label: "ne", score: 1 }] },
         { text: "Jesam li ja govno ili si ti govno?", badge: "MIRROR", answers: [{ label: "oboje", score: 0 }, { label: "ti", score: -1 }, { label: "ja", score: 2 }] },
@@ -909,11 +920,11 @@
     var SHIT_NOIR   = ['#444', '#111'];
 
     var SHIT_TIERS = [
-      { max:  2, cls: 'shit-sm', stops: SHIT_GOLDEN, tierIdx: 0 },
-      { max:  8, cls: 'shit-sm', stops: SHIT_BROWN,  tierIdx: 1 },
-      { max: 14, cls: 'shit-md', stops: SHIT_BROWN,  tierIdx: 2 },
-      { max: 19, cls: 'shit-md', stops: SHIT_NOIR,   tierIdx: 3 },
-      { max: 24, cls: 'shit-lg', stops: SHIT_NOIR,   tierIdx: 4 },
+      { max:  1, cls: 'shit-sm', stops: SHIT_GOLDEN, tierIdx: 0 },
+      { max:  5, cls: 'shit-sm', stops: SHIT_BROWN,  tierIdx: 1 },
+      { max:  9, cls: 'shit-md', stops: SHIT_BROWN,  tierIdx: 2 },
+      { max: 13, cls: 'shit-md', stops: SHIT_NOIR,   tierIdx: 3 },
+      { max: 17, cls: 'shit-lg', stops: SHIT_NOIR,   tierIdx: 4 },
       { max: 30, cls: 'shit-lg', stops: SHIT_NOIR,   tierIdx: 5 }
     ];
 
@@ -922,6 +933,37 @@
     var score = 0;
     var userProfile = { gender: null, age: null, nick: null };
     var profileStep = 'gender';
+    var activeQuestions = [];
+    var isBrutal = false;
+
+    function updateBrutalToggle() {
+      isBrutal = document.getElementById('brutal-checkbox').checked;
+      var track = document.getElementById('brutal-track');
+      var thumb = document.getElementById('brutal-thumb');
+      if (isBrutal) {
+        track.style.background = '#e96fff';
+        thumb.style.transform = 'translateX(16px)';
+        thumb.style.background = '#fff';
+      } else {
+        track.style.background = '#1f2937';
+        thumb.style.transform = 'translateX(0)';
+        thumb.style.background = '#444';
+      }
+    }
+
+    function buildQuestionPool() {
+      var all = QUESTIONS[currentLang];
+      var brutal = all.filter(function(q) { return q.brutal; });
+      var normal = all.filter(function(q) { return !q.brutal; });
+      var pool;
+      if (isBrutal) {
+        var shuffled = normal.slice().sort(function() { return Math.random() - 0.5; });
+        pool = brutal.concat(shuffled.slice(0, 10 - brutal.length));
+      } else {
+        pool = normal.slice().sort(function() { return Math.random() - 0.5; }).slice(0, 10);
+      }
+      return pool.sort(function() { return Math.random() - 0.5; });
+    }
 
     function detectLang() {
       var param = new URLSearchParams(window.location.search).get('lang');
@@ -1140,6 +1182,7 @@
 
     function beginQuiz() {
       currentQ = 0; score = 0;
+      activeQuestions = buildQuestionPool();
       renderQuestion();
       showScreen('screen-quiz');
     }
@@ -1156,7 +1199,7 @@
     }
 
     function renderQuestion() {
-      var qs = QUESTIONS[currentLang];
+      var qs = activeQuestions.length ? activeQuestions : QUESTIONS[currentLang].slice(0, 10);
       var q  = qs[currentQ];
       var qText = document.getElementById('question-text');
       qText.style.opacity = '0';
@@ -1184,9 +1227,9 @@
     }
 
     function answer(idx) {
-      score += QUESTIONS[currentLang][currentQ].answers[idx].score;
+      score += activeQuestions[currentQ].answers[idx].score;
       currentQ++;
-      if (currentQ < QUESTIONS[currentLang].length) renderQuestion();
+      if (currentQ < activeQuestions.length) renderQuestion();
       else finaliseScore();
     }
 
@@ -1207,7 +1250,7 @@
       span.className = 'result-label';
       span.textContent = label;
       headline.appendChild(span);
-      document.getElementById('result-score').textContent = score + ' / 30';
+      document.getElementById('result-score').textContent = 'SHIT SCORE: ' + score;
       var sizeMap = { 'shit-sm': [36, 42], 'shit-md': [72, 84], 'shit-lg': [120, 140] };
       var dims = sizeMap[tier.cls];
       var ic = document.getElementById('result-shit-icon');
@@ -1240,7 +1283,7 @@
       ctx.fillText(label, SIZE / 2, 690);
       ctx.fillStyle = '#555';
       ctx.font = '600 32px -apple-system, BlinkMacSystemFont, Arial, sans-serif';
-      ctx.fillText(t('result.score') + ': ' + score + ' / 30', SIZE / 2, 760);
+      ctx.fillText(t('result.score') + ': ' + score, SIZE / 2, 760);
       ctx.fillStyle = '#333';
       ctx.font = '400 24px -apple-system, BlinkMacSystemFont, Arial, sans-serif';
       ctx.textAlign = 'right';
