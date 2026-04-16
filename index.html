@@ -233,6 +233,19 @@
     }
     .btn-sowhat:hover { border-color: #7bf1a8; color: #7bf1a8; }
 
+    .btn-sowhat-primary {
+      background: linear-gradient(90deg, #e96fff, #7bf1a8);
+      border: none;
+      color: #0d0d1a;
+      font-size: 1rem;
+      font-weight: 800;
+      padding: 14px;
+      margin-top: 0;
+      margin-bottom: 16px;
+      transition: transform 0.15s, opacity 0.15s;
+    }
+    .btn-sowhat-primary:hover { opacity: 0.9; transform: scale(1.02); border-color: transparent; color: #0d0d1a; }
+
     .shit-sm  { display: block; width: 36px;  height: 42px;  }
     .shit-md  { display: block; width: 72px;  height: 84px;  }
     .shit-lg  { display: block; width: 120px; height: 140px; }
@@ -486,11 +499,11 @@
 
     .carousel-img { max-width: 300px; width: 100%; border-radius: 16px; object-fit: cover; }
 
-    .carousel-copy { max-width: 420px; color: #ddd; font-size: 1rem; line-height: 1.75; }
+    .carousel-copy { max-width: 420px; color: #f0f0f0; font-size: 1.05rem; line-height: 1.8; }
     .carousel-copy p { margin: 0; }
 
-    .carousel-kofi { display: block; color: #666; font-size: 0.82rem; text-decoration: none; transition: color 0.2s; }
-    .carousel-kofi:hover { color: #aaa; }
+    .carousel-kofi { display: block; color: #888; font-size: 0.82rem; text-decoration: none; transition: color 0.2s; }
+    .carousel-kofi:hover { color: #ccc; }
 
     .carousel-nav { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 24px; }
 
@@ -643,11 +656,11 @@
       <canvas id="result-shit-icon"></canvas>
     </div>
     <p class="result-score-sub" id="result-score"></p>
+    <button class="btn-sowhat btn-sowhat-primary" onclick="showScreen('screen-closing')" data-i18n="result.sowhat">so what? &#8594;</button>
     <div class="result-actions">
       <button class="btn-save" onclick="downloadCard()" data-i18n="result.save">&#8595; save card</button>
       <button class="btn-retake" onclick="startQuiz()" data-i18n="result.retake">retake</button>
     </div>
-    <button class="btn-sowhat" onclick="showScreen('screen-closing')" data-i18n="result.sowhat">so what? &#8594;</button>
     <a class="donate-link" href="https://ko-fi.com/kokozoo" target="_blank" rel="noopener" data-i18n="result.donate">
       &#9749; if this hit too hard, buy me a coffee
     </a>
