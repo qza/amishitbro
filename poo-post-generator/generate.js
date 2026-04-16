@@ -1,10 +1,12 @@
 const Anthropic = require('@anthropic-ai/sdk')
 const fs = require('fs')
 const path = require('path')
-const open = require('open')
+let open
 const config = require('./config')
 
 async function main() {
+  ;({ default: open } = await import('open'))
+
   const apiKey = process.env.ANTHROPIC_API_KEY
   if (!apiKey) {
     console.error('Error: ANTHROPIC_API_KEY environment variable is not set.')
