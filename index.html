@@ -470,7 +470,7 @@
     .btn-go:hover { transform: scale(1.04); opacity: 0.92; }
     .btn-go:active { transform: scale(0.97); }
 
-    #screen-closing { text-align: center; gap: 0; padding: 0; width: 100%; max-width: 100%; overflow: hidden; }
+    #screen-closing { text-align: center; gap: 0; padding: 24px 0 0; width: 100%; max-width: 100%; overflow: hidden; }
 
     .carousel-wrap {
       width: 100%;
@@ -506,6 +506,24 @@
     .carousel-kofi:hover { color: #ccc; }
 
     .carousel-nav { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 24px; }
+
+    .scroll-hint {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      color: #444;
+      font-size: 1.1rem;
+      line-height: 1;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s;
+      animation: bounceDown 1.4s ease-in-out infinite;
+    }
+    .scroll-hint.visible { opacity: 1; }
+    @keyframes bounceDown {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(5px); }
+    }
 
     .carousel-arrow {
       background: transparent;
@@ -1172,7 +1190,7 @@
       span.className = 'result-label';
       span.textContent = label;
       headline.appendChild(span);
-      document.getElementById('result-score').textContent = t('result.score') + ': ' + score + ' / 30';
+      document.getElementById('result-score').textContent = score + ' / 30';
       var sizeMap = { 'shit-sm': [36, 42], 'shit-md': [72, 84], 'shit-lg': [120, 140] };
       var dims = sizeMap[tier.cls];
       var ic = document.getElementById('result-shit-icon');
@@ -1222,6 +1240,7 @@
       document.querySelectorAll('.screen').forEach(function(s) { s.classList.remove('active'); });
       document.getElementById(id).classList.add('active');
       if (id === 'screen-closing') carouselGoTo(0);
+      document.getElementById('scroll-hint').classList.toggle('visible', id === 'screen-closing');
     }
 
     var carouselIdx = 0;
@@ -1269,5 +1288,6 @@
     applyLang();
 
   </script>
+  <div class="scroll-hint" id="scroll-hint">&#8964;&#8964;</div>
 </body>
 </html>
