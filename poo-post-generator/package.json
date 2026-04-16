@@ -1,0 +1,13 @@
+{
+  "name": "poo-post-generator",
+  "version": "1.0.0",
+  "description": "Weekly poo science Instagram post generator",
+  "main": "generate.js",
+  "scripts": {
+    "generate": "node generate.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0",
+    "open": "^10.1.0"
+  }
+}
