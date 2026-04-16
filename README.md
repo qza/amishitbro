@@ -2,6 +2,14 @@
 
 A brutally honest personality quiz. Are you shit, bro?
 
+## Customize
+
+### Add your own questions
+Edit the `questions` array in `index.html` — each question needs a `text` (string) and `answers` (array of objects with `text` and `score`). That's it.
+
+### Make your own quiz
+Fork this repo and swap out the questions, title, and archetypes. The scoring system is generic — you can theme it however you want.
+
 ## Deploy
 
 ### GitHub Pages
@@ -14,4 +22,4 @@ A brutally honest personality quiz. Are you shit, bro?
 2. Done.
 
 ## Donate URL
-Replace `https://ko-fi.com/PLACEHOLDER` in `index.html` with your actual Ko-fi or Buy Me a Coffee URL.
+Replace `https://ko-fi.com/zeebrojungle` in `index.html` with your own Ko-fi or Buy Me a Coffee URL.
