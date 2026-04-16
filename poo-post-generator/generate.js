@@ -24,7 +24,12 @@ async function main() {
       system: config.systemPrompt,
       messages: [{ role: 'user', content: config.userPrompt }],
     })
-    fact = message.content[0].text.trim()
+    const block = message.content.find(b => b.type === 'text')
+    if (!block || !block.text.trim()) {
+      console.error('Error: Claude returned an empty or non-text response.')
+      process.exit(1)
+    }
+    fact = block.text.trim()
   } catch (err) {
     console.error('Error calling Claude API:', err.message)
     process.exit(1)
@@ -41,14 +46,12 @@ async function main() {
     process.exit(1)
   }
 
-  html = html.replace('{{FACT}}', escapeHtml(fact))
-  html = html.replace('{{SITE_URL}}', escapeHtml(config.siteUrl))
+  html = html.replaceAll('{{FACT}}', escapeHtml(fact))
+  html = html.replaceAll('{{SITE_URL}}', escapeHtml(config.siteUrl))
 
   const today = new Date().toISOString().split('T')[0]
   const outputDir = path.join(__dirname, 'output')
-  if (!fs.existsSync(outputDir)) {
-    fs.mkdirSync(outputDir)
-  }
+  fs.mkdirSync(outputDir, { recursive: true })
   const outputPath = path.join(outputDir, `post-${today}.html`)
 
   try {
