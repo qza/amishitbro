@@ -497,7 +497,8 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    .carousel-img { max-width: 300px; width: 100%; border-radius: 16px; object-fit: cover; }
+    .carousel-img { max-width: 300px; width: 100%; border-radius: 16px; object-fit: cover; max-height: 36vh; }
+    @media (max-width: 480px) { .carousel-img { max-height: 28vh; } }
 
     .carousel-copy { max-width: 420px; color: #f0f0f0; font-size: 1.05rem; line-height: 1.8; min-height: 220px; display: flex; align-items: center; justify-content: center; }
     .carousel-copy p { margin: 0; }
@@ -708,7 +709,7 @@
       </div>
       <div class="carousel-slide" data-slide="4">
         <img class="carousel-img" src="assets/jesus-book.png" alt="Jesus holding a book">
-        <div class="carousel-copy"><p id="closing-slide-5"></p></div>
+        <div class="carousel-copy" style="min-height:0"><p id="closing-slide-5"></p></div>
         <a class="carousel-kofi" href="https://ko-fi.com/zeebrojungle" target="_blank" rel="noopener" data-i18n="closing.kofi">&#9749; this helped? buy me a coffee</a>
         <button class="btn-experts" onclick="showScreen('screen-books')" data-i18n="closing.experts">&#8594; the experts have thoughts</button>
       </div>
@@ -874,7 +875,7 @@
         { text: "Da li kupuješ satove svim prijateljima, a nisi fudbaler?", badge: "PROBABLY", answers: [{ label: "da", score: 1 }, { label: "ne", score: 0 }] },
         { text: 'Da li si ikad odgovorio/la: "koga briga da li si sranje ili nisi?"', badge: "DEFINITELY", answers: [{ label: "da", score: 2 }, { label: "ne", score: 0 }] },
         { text: 'Da li često govoriš: "prestani da me gledaš, govno jedno!"', badge: "MIRROR", answers: [{ label: "ponekad", score: -1 }, { label: "da", score: 0 }, { label: "ne", score: 2 }] },
-        { text: "Da li često pronađiš materijal u čmarnoj kesici, onom teškom mestu za čišćenje?", badge: "MIRROR", answers: [{ label: "da", score: -1 }, { label: "ne", score: 1 }] },
+        { text: "Da li često pronađeš materijal u čmarnoj kesici, onom teškom mestu za čišćenje?", badge: "MIRROR", answers: [{ label: "da", score: -1 }, { label: "ne", score: 1 }] },
         { text: "Da li si svestan/na da si i sam ponekad govno?", badge: "MIRROR", answers: [{ label: "da", score: -1 }, { label: "ne", score: 2 }] },
         { text: "Da li ti je govno smešno?", badge: "MIRROR", answers: [{ label: "da", score: -1 }, { label: "ne", score: 1 }] },
         { text: "Jesam li ja govno ili si ti govno?", badge: "MIRROR", answers: [{ label: "oboje", score: 0 }, { label: "ti", score: -1 }, { label: "ja", score: 2 }] },
