@@ -17,11 +17,34 @@
       justify-content: center;
     }
 
-    /* Screen system */
+    .lang-switcher {
+      position: fixed;
+      top: 14px;
+      right: 16px;
+      z-index: 200;
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: #444;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      padding: 4px 6px;
+      border-radius: 4px;
+      transition: color 0.15s;
+    }
+    .lang-btn.active { color: #e96fff; }
+    .lang-btn:hover:not(.active) { color: #888; }
+    .lang-sep { color: #2a2a3e; font-size: 0.7rem; }
+
     .screen { display: none; width: 100%; max-width: 480px; padding: 32px 24px; }
     .screen.active { display: flex; flex-direction: column; align-items: center; }
 
-    /* Landing */
     #screen-landing { text-align: center; gap: 16px; }
 
     .title {
@@ -67,16 +90,12 @@
     }
     .donate-link:hover { color: #888; }
 
-    /* Transitions */
-    .screen.active {
-      animation: fadeSlideIn 0.35s ease;
-    }
+    .screen.active { animation: fadeSlideIn 0.35s ease; }
     @keyframes fadeSlideIn {
       from { opacity: 0; transform: translateY(14px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* Quiz */
     #screen-quiz { gap: 0; padding: 24px 20px; justify-content: flex-start; }
 
     .quiz-header {
@@ -148,16 +167,8 @@
     }
     .btn-answer:hover { background: rgba(255,255,255,0.07); border-color: #444; }
     .btn-answer:active { transform: scale(0.98); }
-    .btn-answer.yes:hover { border-color: #e96fff; color: #e96fff; }
-    .btn-answer.no:hover  { border-color: #7bf1a8; color: #7bf1a8; }
 
-    /* Result */
-    #screen-result {
-      text-align: center;
-      gap: 0;
-      padding: 40px 24px;
-    }
-
+    #screen-result { text-align: center; gap: 0; padding: 40px 24px; }
 
     .result-headline {
       font-size: clamp(1.3rem, 6vw, 1.9rem);
@@ -167,9 +178,7 @@
       line-height: 1.3;
       margin-bottom: 8px;
     }
-    .result-label {
-      color: #e96fff;
-    }
+    .result-label { color: #e96fff; }
     .result-score-sub {
       color: #555;
       font-size: 0.78rem;
@@ -178,12 +187,7 @@
       margin-bottom: 24px;
     }
 
-    .result-actions {
-      display: flex;
-      gap: 12px;
-      width: 100%;
-      margin-bottom: 24px;
-    }
+    .result-actions { display: flex; gap: 12px; width: 100%; margin-bottom: 24px; }
     .btn-save {
       flex: 1;
       padding: 13px;
@@ -280,7 +284,6 @@
       font-style: italic;
     }
 
-    /* Book "Nothing Here" modal */
     .book-modal-overlay {
       display: none;
       position: fixed;
@@ -290,9 +293,7 @@
       align-items: center;
       justify-content: center;
     }
-    .book-modal-overlay.open {
-      display: flex;
-    }
+    .book-modal-overlay.open { display: flex; }
     .book-modal {
       background: #1a1a2e;
       border: 1px solid #2a2a3e;
@@ -307,16 +308,8 @@
       gap: 16px;
       animation: fadeSlideIn 0.25s ease;
     }
-    .book-modal-title {
-      font-size: 1.4rem;
-      font-weight: 900;
-      color: #fff;
-    }
-    .book-modal-sub {
-      color: #666;
-      font-size: 0.88rem;
-      line-height: 1.6;
-    }
+    .book-modal-title { font-size: 1.4rem; font-weight: 900; color: #fff; }
+    .book-modal-sub { color: #666; font-size: 0.88rem; line-height: 1.6; }
     .book-modal-kofi {
       display: inline-block;
       padding: 11px 28px;
@@ -341,8 +334,6 @@
     }
     .book-modal-close:hover { color: #888; }
 
-    /* ── V4 Profile: breadcrumb + circle selector ─────────────────── */
-
     #screen-profile { gap: 0; padding: 40px 24px; text-align: center; }
 
     .options-slot {
@@ -366,10 +357,7 @@
       pointer-events: none;
       transition: opacity 0.3s ease;
     }
-    .options-layer.visible {
-      opacity: 1;
-      pointer-events: auto;
-    }
+    .options-layer.visible { opacity: 1; pointer-events: auto; }
 
     .circle-option {
       display: flex;
@@ -396,19 +384,10 @@
       filter: drop-shadow(0 0 8px currentColor);
       border-color: currentColor;
     }
-    .circle-option.selected .circle-icon {
-      border-color: #fff;
-      transform: scale(1.1);
-    }
+    .circle-option.selected .circle-icon { border-color: #fff; transform: scale(1.1); }
 
-    .circle-label {
-      font-size: 0.7rem;
-      color: #888;
-      letter-spacing: 0.06em;
-      font-weight: 600;
-    }
+    .circle-label { font-size: 0.7rem; color: #888; letter-spacing: 0.06em; font-weight: 600; }
 
-    /* Nick input inside options slot */
     .nick-layer {
       position: absolute;
       inset: 0;
@@ -419,10 +398,7 @@
       pointer-events: none;
       transition: opacity 0.3s ease;
     }
-    .nick-layer.visible {
-      opacity: 1;
-      pointer-events: auto;
-    }
+    .nick-layer.visible { opacity: 1; pointer-events: auto; }
     .nick-input {
       background: transparent;
       border: none;
@@ -439,7 +415,6 @@
     .nick-input:focus { border-color: #7bf1a8; }
     .nick-input::placeholder { color: #333; }
 
-    /* Breadcrumb bar */
     .breadcrumb-bar {
       display: flex;
       align-items: center;
@@ -459,21 +434,10 @@
       transition: color 0.2s, border-color 0.2s;
       white-space: nowrap;
     }
-    .bc-item.active {
-      color: #fff;
-      border-bottom-color: #e96fff;
-    }
-    .bc-item.done {
-      color: #666;
-      cursor: pointer;
-    }
-    .bc-sep {
-      color: #333;
-      font-size: 0.8rem;
-      padding: 0 2px;
-    }
+    .bc-item.active { color: #fff; border-bottom-color: #e96fff; }
+    .bc-item.done { color: #666; cursor: pointer; }
+    .bc-sep { color: #333; font-size: 0.8rem; padding: 0 2px; }
 
-    /* go! button (hidden until all 3 steps done) */
     .btn-go {
       display: inline-block;
       padding: 14px 40px;
@@ -489,23 +453,11 @@
       opacity: 0;
       pointer-events: none;
     }
-    .btn-go.ready {
-      opacity: 1;
-      pointer-events: auto;
-    }
+    .btn-go.ready { opacity: 1; pointer-events: auto; }
     .btn-go:hover { transform: scale(1.04); opacity: 0.92; }
     .btn-go:active { transform: scale(0.97); }
 
-    /* ── V4 Closing: carousel ─────────────────────────────────────── */
-
-    #screen-closing {
-      text-align: center;
-      gap: 0;
-      padding: 0;
-      width: 100%;
-      max-width: 100%;
-      overflow: hidden;
-    }
+    #screen-closing { text-align: center; gap: 0; padding: 0; width: 100%; max-width: 100%; overflow: hidden; }
 
     .carousel-wrap {
       width: 100%;
@@ -526,45 +478,21 @@
       text-align: center;
       animation: carouselFadeIn 0.3s ease;
     }
-    .carousel-slide.active {
-      display: flex;
-    }
+    .carousel-slide.active { display: flex; }
     @keyframes carouselFadeIn {
       from { opacity: 0; transform: translateY(8px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    .carousel-img {
-      max-width: 300px;
-      width: 100%;
-      border-radius: 16px;
-      object-fit: cover;
-    }
+    .carousel-img { max-width: 300px; width: 100%; border-radius: 16px; object-fit: cover; }
 
-    .carousel-copy {
-      max-width: 420px;
-      color: #ddd;
-      font-size: 1rem;
-      line-height: 1.75;
-    }
+    .carousel-copy { max-width: 420px; color: #ddd; font-size: 1rem; line-height: 1.75; }
     .carousel-copy p { margin: 0; }
 
-    .carousel-kofi {
-      display: block;
-      color: #666;
-      font-size: 0.82rem;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
+    .carousel-kofi { display: block; color: #666; font-size: 0.82rem; text-decoration: none; transition: color 0.2s; }
     .carousel-kofi:hover { color: #aaa; }
 
-    .carousel-nav {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      margin-top: 24px;
-    }
+    .carousel-nav { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 24px; }
 
     .carousel-arrow {
       background: transparent;
@@ -584,11 +512,7 @@
     .carousel-arrow:hover { border-color: #555; color: #bbb; }
     .carousel-arrow:disabled { opacity: 0.2; cursor: default; }
 
-    .carousel-dots {
-      display: flex;
-      gap: 6px;
-      align-items: center;
-    }
+    .carousel-dots { display: flex; gap: 6px; align-items: center; }
     .carousel-dot {
       width: 6px;
       height: 6px;
@@ -597,10 +521,7 @@
       cursor: pointer;
       transition: background 0.2s, transform 0.2s;
     }
-    .carousel-dot.active {
-      background: #e96fff;
-      transform: scale(1.4);
-    }
+    .carousel-dot.active { background: #e96fff; transform: scale(1.4); }
 
     .btn-experts {
       display: inline-block;
@@ -618,29 +539,11 @@
     }
     .btn-experts:hover { background: rgba(233,111,255,0.1); }
 
-    /* ── V4 Books screen ───────────────────────────────────────────── */
+    #screen-books { text-align: center; gap: 0; padding: 40px 24px; }
 
-    #screen-books {
-      text-align: center;
-      gap: 0;
-      padding: 40px 24px;
-    }
+    .books-header { color: #555; font-size: 0.78rem; letter-spacing: 0.08em; font-style: italic; margin-bottom: 24px; }
 
-    .books-header {
-      color: #555;
-      font-size: 0.78rem;
-      letter-spacing: 0.08em;
-      font-style: italic;
-      margin-bottom: 24px;
-    }
-
-    .books-grid {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      margin-bottom: 32px;
-    }
+    .books-grid { width: 100%; display: flex; flex-direction: column; gap: 14px; margin-bottom: 32px; }
 
     .books-footer {
       width: 100%;
@@ -652,86 +555,76 @@
       border-top: 1px solid #1f2937;
     }
 
-    .books-footer-tagline {
-      color: #444;
-      font-size: 0.78rem;
-      letter-spacing: 0.08em;
-    }
+    .books-footer-tagline { color: #444; font-size: 0.78rem; letter-spacing: 0.08em; }
   </style>
 </head>
 <body>
 
-  <!-- Screen 1: Landing -->
+  <div class="lang-switcher">
+    <button class="lang-btn active" id="lang-en" onclick="setLang('en')">EN</button>
+    <span class="lang-sep">|</span>
+    <button class="lang-btn" id="lang-sr" onclick="setLang('sr')">SR</button>
+  </div>
+
   <section id="screen-landing" class="screen active">
-    <h1 class="title">AM I SHIT BRO?</h1>
-    <p class="subtitle">20 questions. brutal truth. no cap.</p>
-    <button class="btn-primary" onclick="startQuiz()">find out →</button>
-    <a class="donate-link" href="https://ko-fi.com/kokozoo" target="_blank" rel="noopener">
-      ☕ if this hits too hard, buy me a coffee
+    <h1 class="title" data-i18n="landing.title">AM I SHIT BRO?</h1>
+    <p class="subtitle" data-i18n="landing.subtitle">20 questions. brutal truth. no cap.</p>
+    <button class="btn-primary" onclick="startQuiz()" data-i18n="landing.cta">find out &#8594;</button>
+    <a class="donate-link" href="https://ko-fi.com/kokozoo" target="_blank" rel="noopener" data-i18n="landing.donate">
+      &#9749; if this hits too hard, buy me a coffee
     </a>
   </section>
 
-  <!-- Screen 2: Profile -->
   <section id="screen-profile" class="screen">
-
-    <!-- Options slot — content crossfades in place -->
     <div class="options-slot">
-
-      <!-- Gender layer -->
       <div class="options-layer visible" id="layer-gender">
         <div class="circle-option" data-value="male" onclick="profilePick('gender','male',this)">
           <div class="circle-icon" style="background:#5b8dee; color:#5b8dee;">&#9794;</div>
-          <span class="circle-label">Male</span>
+          <span class="circle-label" data-i18n="profile.male">Male</span>
         </div>
         <div class="circle-option" data-value="female" onclick="profilePick('gender','female',this)">
           <div class="circle-icon" style="background:#e96fff; color:#e96fff;">&#9792;</div>
-          <span class="circle-label">Female</span>
+          <span class="circle-label" data-i18n="profile.female">Female</span>
         </div>
         <div class="circle-option" data-value="chaos" onclick="profilePick('gender','chaos',this)">
           <div class="circle-icon" style="background:#4ecdc4; color:#4ecdc4;">&#9775;</div>
-          <span class="circle-label">Chaos</span>
+          <span class="circle-label" data-i18n="profile.chaos">Chaos</span>
         </div>
       </div>
 
-      <!-- Age layer (hidden until gender picked) -->
       <div class="options-layer" id="layer-age">
         <div class="circle-option" data-value="young" onclick="profilePick('age','young',this)">
-          <div class="circle-icon" style="background:#a8e063;">🌱</div>
-          <span class="circle-label">Young</span>
+          <div class="circle-icon" style="background:#a8e063;">&#127807;</div>
+          <span class="circle-label" data-i18n="profile.young">Young</span>
         </div>
         <div class="circle-option" data-value="man-woman" onclick="profilePick('age','man-woman',this)">
-          <div class="circle-icon" style="background:#ffd166;">🧑</div>
-          <span class="circle-label">Man/Woman</span>
+          <div class="circle-icon" style="background:#ffd166;">&#129489;</div>
+          <span class="circle-label" data-i18n="profile.adult">Man/Woman</span>
         </div>
         <div class="circle-option" data-value="kinda-old" onclick="profilePick('age','kinda-old',this)">
-          <div class="circle-icon" style="background:#ff9a3c;">🧓</div>
-          <span class="circle-label">Kinda old</span>
+          <div class="circle-icon" style="background:#ff9a3c;">&#129491;</div>
+          <span class="circle-label" data-i18n="profile.older">Kinda old</span>
         </div>
       </div>
 
-      <!-- Nick layer (hidden until age picked) -->
       <div class="nick-layer" id="layer-nick">
         <input class="nick-input" id="nick-input" type="text" maxlength="12"
                placeholder="Dave?" autocomplete="off" spellcheck="false"
                oninput="profileNickInput()" />
       </div>
-
     </div>
 
-    <!-- Breadcrumb -->
     <div class="breadcrumb-bar">
-      <span class="bc-item active" id="bc-gender" onclick="bcGo('gender')">Gender</span>
+      <span class="bc-item active" id="bc-gender" onclick="bcGo('gender')" data-i18n="profile.bc.gender">Gender</span>
       <span class="bc-sep">/</span>
-      <span class="bc-item" id="bc-age" onclick="bcGo('age')">Age</span>
+      <span class="bc-item" id="bc-age" onclick="bcGo('age')" data-i18n="profile.bc.age">Age</span>
       <span class="bc-sep">/</span>
       <span class="bc-item" id="bc-nick" onclick="bcGo('nick')">Nick &#x258c;</span>
     </div>
 
-    <button class="btn-go" id="btn-go" onclick="beginQuiz()">go! &#8594;</button>
-
+    <button class="btn-go" id="btn-go" onclick="beginQuiz()" data-i18n="profile.go">go! &#8594;</button>
   </section>
 
-  <!-- Screen 2: Quiz (populated by JS) -->
   <section id="screen-quiz" class="screen">
     <div class="quiz-header">
       <span class="quiz-counter" id="quiz-counter">1 / 20</span>
@@ -744,7 +637,6 @@
     <div class="answer-btns" id="answer-btns"></div>
   </section>
 
-  <!-- Screen 3: Result (populated by JS) -->
   <section id="screen-result" class="screen">
     <p class="result-headline" id="result-headline"></p>
     <div class="shit-badge-wrap" style="margin: 12px 0 16px;">
@@ -752,66 +644,43 @@
     </div>
     <p class="result-score-sub" id="result-score"></p>
     <div class="result-actions">
-      <button class="btn-save" onclick="downloadCard()">&#8595; save card</button>
-      <button class="btn-retake" onclick="startQuiz()">retake</button>
+      <button class="btn-save" onclick="downloadCard()" data-i18n="result.save">&#8595; save card</button>
+      <button class="btn-retake" onclick="startQuiz()" data-i18n="result.retake">retake</button>
     </div>
-    <button class="btn-sowhat" onclick="showScreen('screen-closing')">so what? &#8594;</button>
-    <a class="donate-link" href="https://ko-fi.com/kokozoo" target="_blank" rel="noopener">
+    <button class="btn-sowhat" onclick="showScreen('screen-closing')" data-i18n="result.sowhat">so what? &#8594;</button>
+    <a class="donate-link" href="https://ko-fi.com/kokozoo" target="_blank" rel="noopener" data-i18n="result.donate">
       &#9749; if this hit too hard, buy me a coffee
     </a>
   </section>
 
-  <!-- Screen 4: Closing carousel -->
   <section id="screen-closing" class="screen">
     <div class="carousel-wrap">
-
-      <!-- Slide 1 -->
       <div class="carousel-slide active" data-slide="0">
         <img class="carousel-img" src="assets/jesus-hand.png" alt="Jesus offering a hand">
-        <div class="carousel-copy">
-          <p>Look. You took a quiz on the internet to find out if you're a bad person.<br>That already makes you better than 90% of actual shits &#8212; they never ask.<br>We see you. We're here.</p>
-        </div>
-        <a class="carousel-kofi" href="https://ko-fi.com/kokozoo" target="_blank" rel="noopener">&#9749; this helped? buy me a coffee</a>
+        <div class="carousel-copy"><p id="closing-slide-1"></p></div>
+        <a class="carousel-kofi" href="https://ko-fi.com/kokozoo" target="_blank" rel="noopener" data-i18n="closing.kofi">&#9749; this helped? buy me a coffee</a>
       </div>
-
-      <!-- Slide 2 -->
       <div class="carousel-slide" data-slide="1">
         <img class="carousel-img" src="assets/jesus-toilet.png" alt="Jesus sitting with you">
-        <div class="carousel-copy">
-          <p>Every shit has its moment. You sit with it.<br>You don't run from it. You don't Instagram it.<br>You just... handle it. Jesus sat with people in worse places than this.<br>He didn't even complain about the smell.</p>
-        </div>
-        <a class="carousel-kofi" href="https://ko-fi.com/kokozoo" target="_blank" rel="noopener">&#9749; this helped? buy me a coffee</a>
+        <div class="carousel-copy"><p id="closing-slide-2"></p></div>
+        <a class="carousel-kofi" href="https://ko-fi.com/kokozoo" target="_blank" rel="noopener" data-i18n="closing.kofi">&#9749; this helped? buy me a coffee</a>
       </div>
-
-      <!-- Slide 3 -->
       <div class="carousel-slide" data-slide="2">
         <img class="carousel-img" src="assets/jesus-running.png" alt="Jesus running forward">
-        <div class="carousel-copy">
-          <p>But at some point you get up.<br>Because if you don't start moving, the shit follows you.<br>It gets in the car. It gets on the plane. It shows up at your next relationship.<br>Run. Laugh. Point forward. That's the whole method.</p>
-        </div>
-        <a class="carousel-kofi" href="https://ko-fi.com/kokozoo" target="_blank" rel="noopener">&#9749; this helped? buy me a coffee</a>
+        <div class="carousel-copy"><p id="closing-slide-3"></p></div>
+        <a class="carousel-kofi" href="https://ko-fi.com/kokozoo" target="_blank" rel="noopener" data-i18n="closing.kofi">&#9749; this helped? buy me a coffee</a>
       </div>
-
-      <!-- Slide 4 -->
       <div class="carousel-slide" data-slide="3">
         <img class="carousel-img" src="assets/jesus-horizon.png" alt="Jesus facing the horizon">
-        <div class="carousel-copy">
-          <p>Stop looking at your shit.<br>Seriously. Turn around. Face the sun.<br>The shit is still there, yes. But so is everything else.<br>You're not the shit. You're the one standing in front of it.</p>
-        </div>
-        <a class="carousel-kofi" href="https://ko-fi.com/kokozoo" target="_blank" rel="noopener">&#9749; this helped? buy me a coffee</a>
+        <div class="carousel-copy"><p id="closing-slide-4"></p></div>
+        <a class="carousel-kofi" href="https://ko-fi.com/kokozoo" target="_blank" rel="noopener" data-i18n="closing.kofi">&#9749; this helped? buy me a coffee</a>
       </div>
-
-      <!-- Slide 5 -->
       <div class="carousel-slide" data-slide="4">
         <img class="carousel-img" src="assets/jesus-book.png" alt="Jesus holding a book">
-        <div class="carousel-copy">
-          <p>And if none of that worked &#8212; the experts have thoughts.</p>
-        </div>
-        <a class="carousel-kofi" href="https://ko-fi.com/kokozoo" target="_blank" rel="noopener">&#9749; this helped? buy me a coffee</a>
-        <button class="btn-experts" onclick="showScreen('screen-books')">&#8594; the experts have thoughts</button>
+        <div class="carousel-copy"><p id="closing-slide-5"></p></div>
+        <a class="carousel-kofi" href="https://ko-fi.com/kokozoo" target="_blank" rel="noopener" data-i18n="closing.kofi">&#9749; this helped? buy me a coffee</a>
+        <button class="btn-experts" onclick="showScreen('screen-books')" data-i18n="closing.experts">&#8594; the experts have thoughts</button>
       </div>
-
-      <!-- Navigation -->
       <div class="carousel-nav">
         <button class="carousel-arrow" id="carousel-prev" onclick="carouselGo(-1)" disabled>&#8249;</button>
         <div class="carousel-dots" id="carousel-dots">
@@ -823,263 +692,323 @@
         </div>
         <button class="carousel-arrow" id="carousel-next" onclick="carouselGo(1)">&#8250;</button>
       </div>
-
     </div>
   </section>
 
-  <!-- Screen 5: Books -->
   <section id="screen-books" class="screen">
-    <p class="books-header">Further reading. Not really.</p>
-
-    <div class="books-grid">
-      <div class="book" style="--book-color: #c0392b;" onclick="openBookModal()">
-        <div class="book-spine"></div>
-        <div class="book-face">
-          <p class="book-title">How To Grow Eat-Shit Kids For Famous Parents</p>
-          <p class="book-author">Dr. Karen Obviously</p>
-        </div>
-      </div>
-      <div class="book" style="--book-color: #2c3e50;" onclick="openBookModal()">
-        <div class="book-spine"></div>
-        <div class="book-face">
-          <p class="book-title">Is This Shit Real Or Not: Expert Analysis</p>
-          <p class="book-author">Prof. J. Doesntmatter PhD</p>
-        </div>
-      </div>
-      <div class="book" style="--book-color: #f39c12;" onclick="openBookModal()">
-        <div class="book-spine"></div>
-        <div class="book-face">
-          <p class="book-title">Carrying Your Shit Across Three Continents</p>
-          <p class="book-author">A guy named Dave</p>
-        </div>
-      </div>
-      <div class="book" style="--book-color: #27ae60;" onclick="openBookModal()">
-        <div class="book-spine"></div>
-        <div class="book-face">
-          <p class="book-title">The Subtle Art of Not Being A Complete Shit</p>
-          <p class="book-author">Someone's Therapist</p>
-        </div>
-      </div>
-      <div class="book" style="--book-color: #2d2d4e;" onclick="openBookModal()">
-        <div class="book-spine"></div>
-        <div class="book-face">
-          <p class="book-title">Shit-Free in 30 Days: A Memoir</p>
-          <p class="book-author">Anonymous (obviously)</p>
-        </div>
-      </div>
-    </div>
-
+    <p class="books-header" data-i18n="books.header">Further reading. Not really.</p>
+    <div class="books-grid" id="books-grid"></div>
     <footer class="books-footer">
-      <p class="books-footer-tagline">Who reads this shit anyway?</p>
-      <button class="btn-retake" onclick="showScreen('screen-closing')" style="font-size:0.8rem; padding:8px 16px;">&#8592; back</button>
+      <p class="books-footer-tagline" data-i18n="books.tagline">Who reads this shit anyway?</p>
+      <button class="btn-retake" onclick="showScreen('screen-closing')" style="font-size:0.8rem; padding:8px 16px;" data-i18n="books.back">&#8592; back</button>
     </footer>
   </section>
 
-  <!-- Book modal -->
   <div class="book-modal-overlay" id="book-modal-overlay" onclick="closeBookModal(event)">
     <div class="book-modal">
-      <div class="book-modal-title">Nothing Here &#128578;</div>
-      <p class="book-modal-sub">These books don't exist.<br>But you do. And that's already something.</p>
-      <a class="book-modal-kofi" href="https://ko-fi.com/kokozoo" target="_blank" rel="noopener">&#9749; buy me a coffee</a>
-      <button class="book-modal-close" onclick="closeBookModal()">close</button>
+      <div class="book-modal-title" data-i18n="bookmodal.title">Nothing Here &#128578;</div>
+      <p class="book-modal-sub" data-i18n="bookmodal.sub">These books do not exist. But you do. And that is already something.</p>
+      <a class="book-modal-kofi" href="https://ko-fi.com/kokozoo" target="_blank" rel="noopener" data-i18n="bookmodal.kofi">&#9749; buy me a coffee</a>
+      <button class="book-modal-close" onclick="closeBookModal()" data-i18n="bookmodal.close">close</button>
     </div>
   </div>
 
   <script>
-    const SHIT_GOLDEN = ['#ffe066', '#c8860a'];
-    const SHIT_BROWN  = ['#a0522d', '#3b1a08'];
-    const SHIT_NOIR   = ['#444', '#111'];
+    var STRINGS = {
+      en: {
+        'landing.title':    'AM I SHIT BRO?',
+        'landing.subtitle': '20 questions. brutal truth. no cap.',
+        'landing.cta':      'find out \u2192',
+        'landing.donate':   '\u2615 if this hits too hard, buy me a coffee',
+        'profile.male':     'Male',
+        'profile.female':   'Female',
+        'profile.chaos':    'Chaos',
+        'profile.young':    'Young',
+        'profile.adult':    'Man/Woman',
+        'profile.older':    'Kinda old',
+        'profile.bc.gender':'Gender',
+        'profile.bc.age':   'Age',
+        'profile.go':       'go! \u2192',
+        'profile.nick.placeholder': 'Dave?',
+        'result.save':      '\u2193 save card',
+        'result.retake':    'retake',
+        'result.sowhat':    'so what? \u2192',
+        'result.donate':    '\u2615 if this hit too hard, buy me a coffee',
+        'result.score':     'SHIT SCORE',
+        'result.headline':  '{nick}, you little',
+        'closing.kofi':     '\u2615 this helped? buy me a coffee',
+        'closing.slide1':   'Look. You took a quiz on the internet to find out if you\'re a bad person. That already makes you better than 90% of actual shits \u2014 they never ask. We see you. We\'re here.',
+        'closing.slide2':   'Every shit has its moment. You sit with it. You don\'t run from it. You don\'t Instagram it. You just... handle it. Jesus sat with people in worse places than this. He didn\'t even complain about the smell.',
+        'closing.slide3':   'But at some point you get up. Because if you don\'t start moving, the shit follows you. It gets in the car. It gets on the plane. It shows up at your next relationship. Run. Laugh. Point forward. That\'s the whole method.',
+        'closing.slide4':   'Stop looking at your shit. Seriously. Turn around. Face the sun. The shit is still there, yes. But so is everything else. You\'re not the shit. You\'re the one standing in front of it.',
+        'closing.slide5':   'And if none of that worked \u2014 the experts have thoughts.',
+        'closing.experts':  '\u2192 the experts have thoughts',
+        'books.header':     'Further reading. Not really.',
+        'books.tagline':    'Who reads this shit anyway?',
+        'books.back':       '\u2190 back',
+        'books.list': [
+          { title: 'How To Grow Eat-Shit Kids For Famous Parents', author: 'Dr. Karen Obviously' },
+          { title: 'Is This Shit Real Or Not: Expert Analysis',    author: 'Prof. J. Doesntmatter PhD' },
+          { title: 'Carrying Your Shit Across Three Continents',   author: 'A guy named Dave' },
+          { title: 'The Subtle Art of Not Being A Complete Shit',  author: 'Someone\'s Therapist' },
+          { title: 'Shit-Free in 30 Days: A Memoir',              author: 'Anonymous (obviously)' }
+        ],
+        'bookmodal.title':  'Nothing Here \uD83D\uDE42',
+        'bookmodal.sub':    'These books do not exist. But you do. And that is already something.',
+        'bookmodal.kofi':   '\u2615 buy me a coffee',
+        'bookmodal.close':  'close',
+        'badge.probably':   'PROBABLY',
+        'badge.definitely': 'DEFINITELY',
+        'badge.mirror':     'MIRROR',
+        'tiers': ['golden shit','brown shit','real brown shit','dark shit','serious dark shit','absolute dark monster']
+      },
+      sr: {
+        'landing.title':    'JESAM LI SRANJE BRATE?',
+        'landing.subtitle': '20 pitanja. brutalna istina. bez lazi.',
+        'landing.cta':      'saznam \u2192',
+        'landing.donate':   '\u2615 ako te je pogodilo, pocasti me kafom',
+        'profile.male':     'Musko',
+        'profile.female':   'Zensko',
+        'profile.chaos':    'Haos',
+        'profile.young':    'Mlad/a',
+        'profile.adult':    'Covek/Zena',
+        'profile.older':    'Malo stariji/a',
+        'profile.bc.gender':'Pol',
+        'profile.bc.age':   'Godine',
+        'profile.go':       'kreni! \u2192',
+        'profile.nick.placeholder': 'Marko?',
+        'result.save':      '\u2193 sacuvaj karticu',
+        'result.retake':    'ponovi',
+        'result.sowhat':    'i sta sad? \u2192',
+        'result.donate':    '\u2615 ako te je pogodilo, pocasti me kafom',
+        'result.score':     'SKOR SRANJA',
+        'result.headline':  '{nick}, malo ti jedno',
+        'closing.kofi':     '\u2615 pomoglo? pocasti me kafom',
+        'closing.slide1':   'Slusaj. Resio/la si da uradis kviz na internetu da saznas da li si losa osoba. To te vec cini boljim/om od 90% pravih sranja \u2014 oni nikad ne pitaju. Vidimo te. Tu smo.',
+        'closing.slide2':   'Svako sranje ima svoj trenutak. Sednes s njim. Ne bezis od njega. Ne stavis ga na Instagram. Samo... resavas. Isus je sedeo s ljudima na gorim mestima od ovog. Nije se ni zalio na miris.',
+        'closing.slide3':   'Ali u nekom trenutku ustanes. Jer ako se ne pomeres, sranje te prati. Ude u kola. Ukrca se u avion. Pojavi se u sledecej vezi. Trci. Smeji se. Gledaj napred. To je cela metoda.',
+        'closing.slide4':   'Prestani da gledas u svoje sranje. Ozbiljno. Okreni se. Pogledaj u sunce. Sranje je jos uvek tu, da. Ali i sve ostalo. Nisi ti sranje. Ti si onaj/ona koji stoji ispred njega.',
+        'closing.slide5':   'A ako nista od toga nije pomoglo \u2014 strucnjaci imaju misljenje.',
+        'closing.experts':  '\u2192 strucnjaci imaju misljenje',
+        'books.header':     'Dalje citanje. Ma ne stvarno.',
+        'books.tagline':    'Ko cita ovo sranje ionako?',
+        'books.back':       '\u2190 nazad',
+        'books.list': [
+          { title: 'Kako Odgajiti Sranje Decu Za Slavne Roditelje', author: 'Dr. Karen Ocito' },
+          { title: 'Je Li Ovo Sranje Stvarno Ili Ne: Strucna Analiza', author: 'Prof. J. Nebitno PhD' },
+          { title: 'Nosenje Svog Sranja Kroz Tri Kontinenta', author: 'Jedan tip po imenu Dave' },
+          { title: 'Suptilna Vestina Toga Da Nisi Totalno Sranje', author: 'Neciiji Terapeut' },
+          { title: 'Bez Sranja Za 30 Dana: Memoari', author: 'Anonimno (naravno)' }
+        ],
+        'bookmodal.title':  'Nema Nista Ovde \uD83D\uDE42',
+        'bookmodal.sub':    'Ove knjige ne postoje. Ali ti postojis. I to je vec nesto.',
+        'bookmodal.kofi':   '\u2615 pocasti me kafom',
+        'bookmodal.close':  'zatvori',
+        'badge.probably':   'VEROVATNO',
+        'badge.definitely': 'DEFINITIVNO',
+        'badge.mirror':     'OGLEDALO',
+        'tiers': ['zlatno sranje','smede sranje','pravo smede sranje','tamno sranje','ozbiljno tamno sranje','apsolutno tamno cudoviste']
+      }
+    };
+
+    var QUESTIONS = {
+      en: [
+        { text: "Do you collect Tarzans in the forest between anus hole and balls?", badge: "DEFINITELY", answers: [{ label: "yeah", score: 2 }, { label: "nah", score: 0 }] },
+        { text: 'Have people told you "stop shitting on me"?', badge: "DEFINITELY", answers: [{ label: "yeah", score: 2 }, { label: "nah", score: 0 }] },
+        { text: "Do you do that ass movement that lifts your back upward, ready to make shit?", badge: "PROBABLY", answers: [{ label: "yeah", score: 1 }, { label: "nah", score: 0 }] },
+        { text: "Do you spin your head round making disgusted faces?", badge: "PROBABLY", answers: [{ label: "yeah", score: 1 }, { label: "nah", score: 0 }] },
+        { text: 'Someone at a diner on Route 66 slides a plate at you: "Eat this. This is not some city shit, you know." Do you eat it?', badge: "DEFINITELY", answers: [{ label: "yeah", score: 2 }, { label: "nah", score: 0 }] },
+        { text: "Do you buy watches for all your friends and you're not a football player?", badge: "PROBABLY", answers: [{ label: "yeah", score: 1 }, { label: "nah", score: 0 }] },
+        { text: 'Have you ever responded: "who gives a damn if you are shit or not?"', badge: "DEFINITELY", answers: [{ label: "yeah", score: 2 }, { label: "nah", score: 0 }] },
+        { text: 'Do you say often: "stop looking at me you shit!"', badge: "MIRROR", answers: [{ label: "sometimes", score: -1 }, { label: "yes", score: 0 }, { label: "no", score: 2 }] },
+        { text: "Do you often find material in your anus bag (hard to clean spot)?", badge: "MIRROR", answers: [{ label: "yeah", score: -1 }, { label: "nah", score: 1 }] },
+        { text: "Are you aware that you are shit sometimes?", badge: "MIRROR", answers: [{ label: "yeah", score: -1 }, { label: "nah", score: 2 }] },
+        { text: "Do you find that shit funny and tasty?", badge: "MIRROR", answers: [{ label: "yeah", score: -1 }, { label: "nah", score: 1 }] },
+        { text: "Am I shit or you are shit?", badge: "MIRROR", answers: [{ label: "both", score: 0 }, { label: "you", score: -1 }, { label: "I", score: 2 }] },
+        { text: "Do you keep a lot of shit in your iPhone or mobile?", badge: "PROBABLY", answers: [{ label: "yeah", score: 0 }, { label: "nah", score: 1 }] },
+        { text: "Can you tell easily if somebody is a shit or not?", badge: "DEFINITELY", answers: [{ label: "yeah", score: 2 }, { label: "nah", score: 0 }] },
+        { text: "Are you ready to go all white tonight? Party?", badge: "PROBABLY", answers: [{ label: "yeah", score: 1 }, { label: "nah", score: 0 }] },
+        { text: "Do you think brown sugar is healthier than white sugar?", badge: "MIRROR", answers: [{ label: "same thing", score: 1 }, { label: "yeah", score: 0 }, { label: "nah", score: -1 }] },
+        { text: 'Do you hear often: "well that is the shit of an argument"', badge: "MIRROR", answers: [{ label: "yeah", score: -1 }, { label: "nah", score: 1 }] },
+        { text: 'Do you get sometimes: "hey, that is a secret you shit"', badge: "MIRROR", answers: [{ label: "yeah", score: -1 }, { label: "nah", score: 1 }] },
+        { text: "Do you care at all about your shit friends?", badge: "MIRROR", answers: [{ label: "yeah", score: -1 }, { label: "can't tell", score: 0 }, { label: "nah", score: 1 }] },
+        { text: "Do you ever say sorry you shit?", badge: "MIRROR", answers: [{ label: "yeah", score: 1 }, { label: "not like that", score: -1 }] }
+      ],
+      sr: [
+        { text: "Da li sakupljas Tarzane u sumi izmedju rupice i muda?", badge: "DEFINITELY", answers: [{ label: "da", score: 2 }, { label: "ne", score: 0 }] },
+        { text: 'Da li su ti ljudi govorili "prestani da me seres"?', badge: "DEFINITELY", answers: [{ label: "da", score: 2 }, { label: "ne", score: 0 }] },
+        { text: "Da li pravis onaj pokret zadnjicom koji podiže ledja uvis, kao da se spreimas da servis?", badge: "PROBABLY", answers: [{ label: "da", score: 1 }, { label: "ne", score: 0 }] },
+        { text: "Da li vrtiš glavom praveci zgadjene grimase?", badge: "PROBABLY", answers: [{ label: "da", score: 1 }, { label: "ne", score: 0 }] },
+        { text: 'Neko u kafani na autoputu ti gura tanjir: "Jedi ovo. Ovo nije neko gradsko sranje, znas." Da li jedes?', badge: "DEFINITELY", answers: [{ label: "da", score: 2 }, { label: "ne", score: 0 }] },
+        { text: "Da li kupujes satove svim prijateljima, a nisi fudbaler?", badge: "PROBABLY", answers: [{ label: "da", score: 1 }, { label: "ne", score: 0 }] },
+        { text: 'Da li si ikad odgovorio/la: "koga briga da li si sranje ili ne?"', badge: "DEFINITELY", answers: [{ label: "da", score: 2 }, { label: "ne", score: 0 }] },
+        { text: 'Da li cesto govoris: "prestani da me gledas, ti sranje!"', badge: "MIRROR", answers: [{ label: "ponekad", score: -1 }, { label: "da", score: 0 }, { label: "ne", score: 2 }] },
+        { text: "Da li cesto pronadjis materijal na teskom mestu za cišcenje?", badge: "MIRROR", answers: [{ label: "da", score: -1 }, { label: "ne", score: 1 }] },
+        { text: "Da li si svestan/na da si ponekad sranje?", badge: "MIRROR", answers: [{ label: "da", score: -1 }, { label: "ne", score: 2 }] },
+        { text: "Da li ti je sranje smesno i ukusno?", badge: "MIRROR", answers: [{ label: "da", score: -1 }, { label: "ne", score: 1 }] },
+        { text: "Jesam li ja sranje ili si ti sranje?", badge: "MIRROR", answers: [{ label: "oboje", score: 0 }, { label: "ti", score: -1 }, { label: "ja", score: 2 }] },
+        { text: "Da li cuvas puno sranja na svom telefonu?", badge: "PROBABLY", answers: [{ label: "da", score: 0 }, { label: "ne", score: 1 }] },
+        { text: "Da li lako mozes da prepoznas ko je sranje a ko nije?", badge: "DEFINITELY", answers: [{ label: "da", score: 2 }, { label: "ne", score: 0 }] },
+        { text: "Da li si spreman/na da izadjes veceras na sve belo? Zurka?", badge: "PROBABLY", answers: [{ label: "da", score: 1 }, { label: "ne", score: 0 }] },
+        { text: "Da li mislis da je smedi secer zdraviji od belog?", badge: "MIRROR", answers: [{ label: "isto je", score: 1 }, { label: "da", score: 0 }, { label: "ne", score: -1 }] },
+        { text: 'Da li cesto cujes: "pa to je sranje od argumenta"', badge: "MIRROR", answers: [{ label: "da", score: -1 }, { label: "ne", score: 1 }] },
+        { text: 'Da li ti ponekad kazu: "hej, to je tajna, ti sranje"', badge: "MIRROR", answers: [{ label: "da", score: -1 }, { label: "ne", score: 1 }] },
+        { text: "Da li te uopste briga za tvoje sranje prijatelje?", badge: "MIRROR", answers: [{ label: "da", score: -1 }, { label: "ne mogu da kazem", score: 0 }, { label: "ne", score: 1 }] },
+        { text: "Da li ikad kazes izvini, ti sranje?", badge: "MIRROR", answers: [{ label: "da", score: 1 }, { label: "ne bas tako", score: -1 }] }
+      ]
+    };
+
+    var SHIT_GOLDEN = ['#ffe066', '#c8860a'];
+    var SHIT_BROWN  = ['#a0522d', '#3b1a08'];
+    var SHIT_NOIR   = ['#444', '#111'];
+
+    var SHIT_TIERS = [
+      { max:  2, cls: 'shit-sm', stops: SHIT_GOLDEN, tierIdx: 0 },
+      { max:  8, cls: 'shit-sm', stops: SHIT_BROWN,  tierIdx: 1 },
+      { max: 14, cls: 'shit-md', stops: SHIT_BROWN,  tierIdx: 2 },
+      { max: 19, cls: 'shit-md', stops: SHIT_NOIR,   tierIdx: 3 },
+      { max: 24, cls: 'shit-lg', stops: SHIT_NOIR,   tierIdx: 4 },
+      { max: 30, cls: 'shit-lg', stops: SHIT_NOIR,   tierIdx: 5 }
+    ];
+
+    var currentLang = 'en';
+    var currentQ = 0;
+    var score = 0;
+    var userProfile = { gender: null, age: null, nick: null };
+    var profileStep = 'gender';
+
+    function detectLang() {
+      var saved = localStorage.getItem('lang');
+      if (saved === 'sr' || saved === 'en') return saved;
+      var nav = (navigator.language || '').toLowerCase();
+      return (nav.startsWith('sr') || nav.startsWith('hr') || nav.startsWith('bs')) ? 'sr' : 'en';
+    }
+
+    function t(key) {
+      var s = STRINGS[currentLang];
+      return (s && s[key] !== undefined) ? s[key] : (STRINGS['en'][key] || key);
+    }
+
+    function applyLang() {
+      document.documentElement.lang = currentLang;
+      document.title = currentLang === 'sr' ? 'Jesam Li Sranje Brate?' : 'Am I Shit Bro?';
+
+      document.querySelectorAll('[data-i18n]').forEach(function(el) {
+        var key = el.getAttribute('data-i18n');
+        var val = t(key);
+        if (typeof val !== 'string') return;
+        if (el.tagName === 'INPUT') {
+          el.placeholder = val;
+        } else {
+          el.textContent = val;
+        }
+      });
+
+      document.getElementById('nick-input').placeholder = t('profile.nick.placeholder');
+
+      for (var i = 1; i <= 5; i++) {
+        var el = document.getElementById('closing-slide-' + i);
+        if (el) el.textContent = t('closing.slide' + i);
+      }
+
+      updateBreadcrumb();
+      renderBooks();
+
+      document.getElementById('lang-en').classList.toggle('active', currentLang === 'en');
+      document.getElementById('lang-sr').classList.toggle('active', currentLang === 'sr');
+
+      if (document.getElementById('screen-quiz').classList.contains('active')) renderQuestion();
+      if (document.getElementById('screen-result').classList.contains('active')) showResult();
+    }
+
+    function setLang(lang) {
+      currentLang = lang;
+      localStorage.setItem('lang', lang);
+      applyLang();
+    }
+
+    function renderBooks() {
+      var grid = document.getElementById('books-grid');
+      if (!grid) return;
+      var colors = ['#c0392b', '#2c3e50', '#f39c12', '#27ae60', '#2d2d4e'];
+      var list = t('books.list');
+      grid.replaceChildren();
+      list.forEach(function(book, i) {
+        var outer = document.createElement('div');
+        outer.className = 'book';
+        outer.style.setProperty('--book-color', colors[i % colors.length]);
+        outer.onclick = openBookModal;
+
+        var spine = document.createElement('div');
+        spine.className = 'book-spine';
+
+        var face = document.createElement('div');
+        face.className = 'book-face';
+
+        var titleEl = document.createElement('p');
+        titleEl.className = 'book-title';
+        titleEl.textContent = book.title;
+
+        var authorEl = document.createElement('p');
+        authorEl.className = 'book-author';
+        authorEl.textContent = book.author;
+
+        face.appendChild(titleEl);
+        face.appendChild(authorEl);
+        outer.appendChild(spine);
+        outer.appendChild(face);
+        grid.appendChild(outer);
+      });
+    }
 
     function drawShit(canvas, w, h, stops) {
-      const ctx = canvas.getContext('2d');
+      var ctx = canvas.getContext('2d');
       canvas.width  = w;
       canvas.height = h;
       ctx.clearRect(0, 0, w, h);
-
-      const grad = ctx.createLinearGradient(0, 0, 0, h);
-      grad.addColorStop(0,   stops[0]);
-      grad.addColorStop(1,   stops[1]);
-
-      // proportions relative to canvas
-      const cx   = w / 2;
-      const base = h;          // bottom of the base
-      const bw   = w * 0.48;   // half-width of base
-
-      // --- base tier (widest, flat bottom) ---
+      var grad = ctx.createLinearGradient(0, 0, 0, h);
+      grad.addColorStop(0, stops[0]);
+      grad.addColorStop(1, stops[1]);
+      var cx = w / 2, base = h, bw = w * 0.48;
       ctx.beginPath();
       ctx.moveTo(cx - bw, base);
       ctx.lineTo(cx + bw, base);
-      // right side curves up
       ctx.quadraticCurveTo(cx + bw * 1.12, base - h * 0.18, cx + bw * 0.72, base - h * 0.28);
-      // left mirror
       ctx.quadraticCurveTo(cx - bw * 1.12, base - h * 0.18, cx - bw, base);
       ctx.closePath();
-      ctx.fillStyle = grad;
-      ctx.fill();
-
-      // --- middle tier ---
-      const m1y = base - h * 0.25;
-      const mw  = bw * 0.72;
-      ctx.beginPath();
-      ctx.ellipse(cx, m1y, mw, h * 0.17, 0, 0, Math.PI * 2);
-      ctx.fillStyle = grad;
-      ctx.fill();
-
-      // --- top tier (small) ---
-      const m2y = base - h * 0.50;
-      const tw  = bw * 0.44;
-      ctx.beginPath();
-      ctx.ellipse(cx, m2y, tw, h * 0.13, 0, 0, Math.PI * 2);
-      ctx.fillStyle = grad;
-      ctx.fill();
-
-      // --- top swirl tip ---
-      const ty = base - h * 0.72;
-      const sw = bw * 0.22;
-      ctx.beginPath();
-      ctx.ellipse(cx, ty, sw, h * 0.10, 0, 0, Math.PI * 2);
-      ctx.fillStyle = grad;
-      ctx.fill();
-
-      // pointy tip
+      ctx.fillStyle = grad; ctx.fill();
+      var m1y = base - h * 0.25, mw = bw * 0.72;
+      ctx.beginPath(); ctx.ellipse(cx, m1y, mw, h * 0.17, 0, 0, Math.PI * 2);
+      ctx.fillStyle = grad; ctx.fill();
+      var m2y = base - h * 0.50, tw = bw * 0.44;
+      ctx.beginPath(); ctx.ellipse(cx, m2y, tw, h * 0.13, 0, 0, Math.PI * 2);
+      ctx.fillStyle = grad; ctx.fill();
+      var ty = base - h * 0.72, sw = bw * 0.22;
+      ctx.beginPath(); ctx.ellipse(cx, ty, sw, h * 0.10, 0, 0, Math.PI * 2);
+      ctx.fillStyle = grad; ctx.fill();
       ctx.beginPath();
       ctx.moveTo(cx - sw * 0.5, ty);
       ctx.quadraticCurveTo(cx, ty - h * 0.16, cx + sw * 0.1, ty - h * 0.09);
       ctx.quadraticCurveTo(cx + sw * 0.6, ty + h * 0.02, cx - sw * 0.5, ty);
-      ctx.fillStyle = grad;
-      ctx.fill();
-
-      // --- eyes ---
-      const ey   = base - h * 0.34;
-      const er   = w * 0.045;
-      const eoff = mw * 0.38;
+      ctx.fillStyle = grad; ctx.fill();
+      var ey = base - h * 0.34, er = w * 0.045, eoff = mw * 0.38;
       ctx.fillStyle = '#fff';
       ctx.beginPath(); ctx.arc(cx - eoff, ey, er * 1.3, 0, Math.PI * 2); ctx.fill();
       ctx.beginPath(); ctx.arc(cx + eoff, ey, er * 1.3, 0, Math.PI * 2); ctx.fill();
       ctx.fillStyle = '#111';
       ctx.beginPath(); ctx.arc(cx - eoff + er * 0.2, ey, er * 0.7, 0, Math.PI * 2); ctx.fill();
       ctx.beginPath(); ctx.arc(cx + eoff + er * 0.2, ey, er * 0.7, 0, Math.PI * 2); ctx.fill();
-
-      // --- smile ---
-      const sy = base - h * 0.27;
-      ctx.beginPath();
-      ctx.arc(cx, sy, mw * 0.28, 0.15, Math.PI - 0.15);
-      ctx.strokeStyle = '#111';
-      ctx.lineWidth   = w * 0.03;
-      ctx.lineCap     = 'round';
-      ctx.stroke();
+      var sy = base - h * 0.27;
+      ctx.beginPath(); ctx.arc(cx, sy, mw * 0.28, 0.15, Math.PI - 0.15);
+      ctx.strokeStyle = '#111'; ctx.lineWidth = w * 0.03; ctx.lineCap = 'round'; ctx.stroke();
     }
 
-    const QUESTIONS = [
-      {
-        text: "Do you collect Tarzans in the forest between anus hole and balls?",
-        badge: "DEFINITELY",
-        answers: [{ label: "yeah", score: 2 }, { label: "nah", score: 0 }]
-      },
-      {
-        text: 'Have people told you "stop shitting on me"?',
-        badge: "DEFINITELY",
-        answers: [{ label: "yeah", score: 2 }, { label: "nah", score: 0 }]
-      },
-      {
-        text: "Do you do that ass movement that lifts your back upward, ready to make shit?",
-        badge: "PROBABLY",
-        answers: [{ label: "yeah", score: 1 }, { label: "nah", score: 0 }]
-      },
-      {
-        text: "Do you spin your head round making disgusted faces?",
-        badge: "PROBABLY",
-        answers: [{ label: "yeah", score: 1 }, { label: "nah", score: 0 }]
-      },
-      {
-        text: "Someone at a diner on Route 66 slides a plate at you: \"Eat this. This is not some city shit, you know.\" Do you eat it?",
-        badge: "DEFINITELY",
-        answers: [{ label: "yeah", score: 2 }, { label: "nah", score: 0 }]
-      },
-      {
-        text: "Do you buy watches for all your friends and you're not a football player?",
-        badge: "PROBABLY",
-        answers: [{ label: "yeah", score: 1 }, { label: "nah", score: 0 }]
-      },
-      {
-        text: 'Have you ever responded: "who gives a damn if you are shit or not?"',
-        badge: "DEFINITELY",
-        answers: [{ label: "yeah", score: 2 }, { label: "nah", score: 0 }]
-      },
-      {
-        text: 'Do you say often: "stop looking at me you shit!"',
-        badge: "MIRROR",
-        answers: [{ label: "sometimes", score: -1 }, { label: "yes", score: 0 }, { label: "no", score: 2 }]
-      },
-      {
-        text: "Do you often find material in your anus bag (hard to clean spot)?",
-        badge: "MIRROR",
-        answers: [{ label: "yeah", score: -1 }, { label: "nah", score: 1 }]
-      },
-      {
-        text: "Are you aware that you are shit sometimes?",
-        badge: "MIRROR",
-        answers: [{ label: "yeah", score: -1 }, { label: "nah", score: 2 }]
-      },
-      {
-        text: "Do you find that shit funny and tasty?",
-        badge: "MIRROR",
-        answers: [{ label: "yeah", score: -1 }, { label: "nah", score: 1 }]
-      },
-      {
-        text: "Am I shit or you are shit?",
-        badge: "MIRROR",
-        answers: [{ label: "both", score: 0 }, { label: "you", score: -1 }, { label: "I", score: 2 }]
-      },
-      {
-        text: "Do you keep a lot of shit in your iPhone or mobile?",
-        badge: "PROBABLY",
-        answers: [{ label: "yeah", score: 0 }, { label: "nah", score: 1 }]
-      },
-      {
-        text: "Can you tell easily if somebody is a shit or not?",
-        badge: "DEFINITELY",
-        answers: [{ label: "yeah", score: 2 }, { label: "nah", score: 0 }]
-      },
-      {
-        text: "Are you ready to go all white tonight? Party?",
-        badge: "PROBABLY",
-        answers: [{ label: "yeah", score: 1 }, { label: "nah", score: 0 }]
-      },
-      {
-        text: "Do you think brown sugar is healthier than white sugar?",
-        badge: "MIRROR",
-        answers: [{ label: "same thing", score: 1 }, { label: "yeah", score: 0 }, { label: "nah", score: -1 }]
-      },
-      {
-        text: 'Do you hear often: "well that is the shit of an argument"',
-        badge: "MIRROR",
-        answers: [{ label: "yeah", score: -1 }, { label: "nah", score: 1 }]
-      },
-      {
-        text: 'Do you get sometimes: "hey, that is a secret you shit"',
-        badge: "MIRROR",
-        answers: [{ label: "yeah", score: -1 }, { label: "nah", score: 1 }]
-      },
-      {
-        text: "Do you care at all about your shit friends?",
-        badge: "MIRROR",
-        answers: [{ label: "yeah", score: -1 }, { label: "can't tell", score: 0 }, { label: "nah", score: 1 }]
-      },
-      {
-        text: "Do you ever say sorry you shit?",
-        badge: "MIRROR",
-        answers: [{ label: "yeah", score: 1 }, { label: "not like that", score: -1 }]
-      },
-    ];
-
-    let currentQ = 0;
-    let score = 0;
-
-    let userProfile = { gender: null, age: null, nick: null };
-
-    // step = 'gender' | 'age' | 'nick'
-    let profileStep = 'gender';
+    function getShitTier(s) {
+      for (var i = 0; i < SHIT_TIERS.length; i++) {
+        if (s <= SHIT_TIERS[i].max) return SHIT_TIERS[i];
+      }
+      return SHIT_TIERS[SHIT_TIERS.length - 1];
+    }
 
     function showLayer(step) {
       document.getElementById('layer-gender').classList.toggle('visible', step === 'gender');
@@ -1089,36 +1018,27 @@
 
     function updateBreadcrumb() {
       var steps = ['gender', 'age', 'nick'];
-      var ids   = { gender: 'bc-gender', age: 'bc-age', nick: 'bc-nick' };
       steps.forEach(function(s) {
-        var el = document.getElementById(ids[s]);
+        var el = document.getElementById('bc-' + s);
+        if (!el) return;
         el.classList.remove('active', 'done');
-        if (s === profileStep) {
-          el.classList.add('active');
-        } else if (isStepDone(s)) {
-          el.classList.add('done');
-        }
+        if (s === profileStep) el.classList.add('active');
+        else if (isStepDone(s)) el.classList.add('done');
+        if (s !== 'nick') el.textContent = t('profile.bc.' + s);
       });
-      // Update nick breadcrumb label: typed value or default cursor label
       var nickEl = document.getElementById('bc-nick');
-      nickEl.textContent = userProfile.nick ? userProfile.nick : 'Nick \u258c';
+      if (nickEl) nickEl.textContent = userProfile.nick ? userProfile.nick : 'Nick \u258c';
     }
 
     function isStepDone(s) {
-      if (s === 'gender') return !!userProfile.gender;
-      if (s === 'age')    return !!userProfile.age;
-      if (s === 'nick')   return !!userProfile.nick;
-      return false;
+      return s === 'gender' ? !!userProfile.gender : s === 'age' ? !!userProfile.age : !!userProfile.nick;
     }
 
     function profilePick(field, value, el) {
       var layerId = field === 'gender' ? 'layer-gender' : 'layer-age';
-      document.querySelectorAll('#' + layerId + ' .circle-option').forEach(function(c) {
-        c.classList.remove('selected');
-      });
+      document.querySelectorAll('#' + layerId + ' .circle-option').forEach(function(c) { c.classList.remove('selected'); });
       el.classList.add('selected');
       userProfile = Object.assign({}, userProfile, { [field]: value });
-
       if (field === 'gender') {
         userProfile = Object.assign({}, userProfile, { age: null, nick: null });
         document.getElementById('nick-input').value = '';
@@ -1129,7 +1049,6 @@
         profileStep = 'nick';
         setTimeout(function() { document.getElementById('nick-input').focus(); }, 320);
       }
-
       showLayer(profileStep);
       updateBreadcrumb();
       updateGoButton();
@@ -1148,16 +1067,12 @@
       if (step === 'gender') {
         userProfile = Object.assign({}, userProfile, { gender: null, age: null, nick: null });
         document.getElementById('nick-input').value = '';
-        document.querySelectorAll('#layer-gender .circle-option, #layer-age .circle-option').forEach(function(c) {
-          c.classList.remove('selected');
-        });
+        document.querySelectorAll('#layer-gender .circle-option, #layer-age .circle-option').forEach(function(c) { c.classList.remove('selected'); });
         profileStep = 'gender';
       } else if (step === 'age') {
         userProfile = Object.assign({}, userProfile, { age: null, nick: null });
         document.getElementById('nick-input').value = '';
-        document.querySelectorAll('#layer-age .circle-option').forEach(function(c) {
-          c.classList.remove('selected');
-        });
+        document.querySelectorAll('#layer-age .circle-option').forEach(function(c) { c.classList.remove('selected'); });
         profileStep = 'age';
       } else if (step === 'nick') {
         userProfile = Object.assign({}, userProfile, { nick: null });
@@ -1172,13 +1087,11 @@
 
     function updateGoButton() {
       var btn = document.getElementById('btn-go');
-      var ready = !!(userProfile.gender && userProfile.age && userProfile.nick);
-      btn.classList.toggle('ready', ready);
+      btn.classList.toggle('ready', !!(userProfile.gender && userProfile.age && userProfile.nick));
     }
 
     function beginQuiz() {
-      currentQ = 0;
-      score = 0;
+      currentQ = 0; score = 0;
       renderQuestion();
       showScreen('screen-quiz');
     }
@@ -1187,9 +1100,7 @@
       userProfile = { gender: null, age: null, nick: null };
       profileStep = 'gender';
       document.getElementById('nick-input').value = '';
-      document.querySelectorAll('#layer-gender .circle-option, #layer-age .circle-option').forEach(function(c) {
-        c.classList.remove('selected');
-      });
+      document.querySelectorAll('#layer-gender .circle-option, #layer-age .circle-option').forEach(function(c) { c.classList.remove('selected'); });
       showLayer('gender');
       updateBreadcrumb();
       updateGoButton();
@@ -1197,29 +1108,22 @@
     }
 
     function renderQuestion() {
-      var q     = QUESTIONS[currentQ];
-      var total = QUESTIONS.length;
-
+      var qs = QUESTIONS[currentLang];
+      var q  = qs[currentQ];
       var qText = document.getElementById('question-text');
       qText.style.opacity = '0';
-      setTimeout(function() {
-        qText.textContent = q.text;
-        qText.style.opacity = '1';
-      }, 150);
-
-      document.getElementById('quiz-counter').textContent = (currentQ + 1) + ' / ' + total;
-      document.getElementById('progress-fill').style.width = ((currentQ / total) * 100) + '%';
-
+      setTimeout(function() { qText.textContent = q.text; qText.style.opacity = '1'; }, 150);
+      document.getElementById('quiz-counter').textContent = (currentQ + 1) + ' / ' + qs.length;
+      document.getElementById('progress-fill').style.width = ((currentQ / qs.length) * 100) + '%';
       var badgeMap = {
-        'PROBABLY':   { text: 'PROBABLY',   cls: 'badge badge-probably'   },
-        'DEFINITELY': { text: 'DEFINITELY', cls: 'badge badge-definitely' },
-        'MIRROR':     { text: 'MIRROR',     cls: 'badge badge-mirror'     }
+        'PROBABLY':   { text: t('badge.probably'),   cls: 'badge badge-probably'   },
+        'DEFINITELY': { text: t('badge.definitely'), cls: 'badge badge-definitely' },
+        'MIRROR':     { text: t('badge.mirror'),     cls: 'badge badge-mirror'     }
       };
       var b = badgeMap[q.badge] || badgeMap['PROBABLY'];
       var badge = document.getElementById('quiz-badge');
       badge.textContent = b.text;
       badge.className   = b.cls;
-
       var btns = document.getElementById('answer-btns');
       btns.replaceChildren();
       q.answers.forEach(function(a, i) {
@@ -1232,124 +1136,79 @@
     }
 
     function answer(idx) {
-      score += QUESTIONS[currentQ].answers[idx].score;
+      score += QUESTIONS[currentLang][currentQ].answers[idx].score;
       currentQ++;
-      if (currentQ < QUESTIONS.length) {
-        renderQuestion();
-      } else {
-        finaliseScore();
-      }
+      if (currentQ < QUESTIONS[currentLang].length) renderQuestion();
+      else finaliseScore();
     }
 
     function finaliseScore() {
-      var multipliers = { male: 1.0, female: 1.5, chaos: 0.67 };
-      var m = multipliers[userProfile.gender] || 1.0;
-      score = Math.round(score * m);
-      score = Math.max(-10, Math.min(30, score));
+      var m = { male: 1.0, female: 1.5, chaos: 0.67 }[userProfile.gender] || 1.0;
+      score = Math.max(-10, Math.min(30, Math.round(score * m)));
       showResult();
     }
 
-    function showScreen(id) {
-      document.querySelectorAll('.screen').forEach(function(s) { s.classList.remove('active'); });
-      document.getElementById(id).classList.add('active');
-      if (id === 'screen-closing') { carouselGoTo(0); }
-    }
-
-    var SHIT_TIERS = [
-      // max: 2 also covers negative scores (finaliseScore clamps to -10..30)
-      { max:  2, cls: 'shit-sm', stops: SHIT_GOLDEN, label: 'golden shit'          },
-      { max:  8, cls: 'shit-sm', stops: SHIT_BROWN,  label: 'brown shit'           },
-      { max: 14, cls: 'shit-md', stops: SHIT_BROWN,  label: 'real brown shit'      },
-      { max: 19, cls: 'shit-md', stops: SHIT_NOIR,   label: 'dark shit'            },
-      { max: 24, cls: 'shit-lg', stops: SHIT_NOIR,   label: 'serious dark shit'    },
-      { max: 30, cls: 'shit-lg', stops: SHIT_NOIR,   label: 'absolute dark monster'}
-    ];
-
-    function getShitTier(s) {
-      for (var i = 0; i < SHIT_TIERS.length; i++) {
-        if (s <= SHIT_TIERS[i].max) return SHIT_TIERS[i];
-      }
-      return SHIT_TIERS[SHIT_TIERS.length - 1];
-    }
-
     function showResult() {
-      var tier = getShitTier(score);
-      var nick = (userProfile.nick || 'bro').trim();
-
-      // Build headline safely via DOM — nick is user input, must NOT go into innerHTML
+      var tier  = getShitTier(score);
+      var nick  = (userProfile.nick || 'bro').trim();
+      var label = t('tiers')[tier.tierIdx];
       var headline = document.getElementById('result-headline');
       headline.textContent = '';
-      headline.appendChild(document.createTextNode(nick + ', you little '));
-      var labelSpan = document.createElement('span');
-      labelSpan.className = 'result-label';
-      labelSpan.textContent = tier.label;
-      headline.appendChild(labelSpan);
-
-      // Score subtext
-      document.getElementById('result-score').textContent = 'SHIT SCORE: ' + score + ' / 30';
-
-      // Shit icon
+      headline.appendChild(document.createTextNode(t('result.headline').replace('{nick}', nick) + ' '));
+      var span = document.createElement('span');
+      span.className = 'result-label';
+      span.textContent = label;
+      headline.appendChild(span);
+      document.getElementById('result-score').textContent = t('result.score') + ': ' + score + ' / 30';
       var sizeMap = { 'shit-sm': [36, 42], 'shit-md': [72, 84], 'shit-lg': [120, 140] };
       var dims = sizeMap[tier.cls];
       var ic = document.getElementById('result-shit-icon');
       ic.className = tier.cls;
       drawShit(ic, dims[0], dims[1], tier.stops);
-
       showScreen('screen-result');
     }
 
     function downloadCard() {
-      var tier = getShitTier(score);
-      var nick = (userProfile.nick || 'bro').trim();
-      var SIZE = 1080;
+      var tier  = getShitTier(score);
+      var nick  = (userProfile.nick || 'bro').trim();
+      var label = t('tiers')[tier.tierIdx];
+      var SIZE  = 1080;
       var canvas = document.createElement('canvas');
-      canvas.width = SIZE;
-      canvas.height = SIZE;
+      canvas.width = SIZE; canvas.height = SIZE;
       var ctx = canvas.getContext('2d');
-
-      // Background
       var bg = ctx.createLinearGradient(0, 0, SIZE, SIZE);
-      bg.addColorStop(0, '#1a1a2e');
-      bg.addColorStop(1, '#16213e');
-      ctx.fillStyle = bg;
-      ctx.fillRect(0, 0, SIZE, SIZE);
-
-      // Shit icon centered in top section
+      bg.addColorStop(0, '#1a1a2e'); bg.addColorStop(1, '#16213e');
+      ctx.fillStyle = bg; ctx.fillRect(0, 0, SIZE, SIZE);
       var iconW = { 'shit-sm': 120, 'shit-md': 240, 'shit-lg': 400 }[tier.cls];
       var iconH = Math.round(iconW * (42 / 36));
       var shitCanvas = document.createElement('canvas');
       drawShit(shitCanvas, iconW, iconH, tier.stops);
       ctx.drawImage(shitCanvas, (SIZE - iconW) / 2, 180);
-
-      // Headline line 1 — nick via fillText (canvas, no XSS risk)
       ctx.fillStyle = '#fff';
       ctx.font = '900 72px -apple-system, BlinkMacSystemFont, Arial, sans-serif';
       ctx.textAlign = 'center';
-      ctx.fillText(nick + ', you little', SIZE / 2, 600);
-
-      // Headline line 2 (label in pink)
+      ctx.fillText(t('result.headline').replace('{nick}', nick), SIZE / 2, 600);
       ctx.fillStyle = '#e96fff';
-      ctx.fillText(tier.label, SIZE / 2, 690);
-
-      // Score
+      ctx.fillText(label, SIZE / 2, 690);
       ctx.fillStyle = '#555';
       ctx.font = '600 32px -apple-system, BlinkMacSystemFont, Arial, sans-serif';
-      ctx.fillText('SHIT SCORE: ' + score + ' / 30', SIZE / 2, 760);
-
-      // Watermark
+      ctx.fillText(t('result.score') + ': ' + score + ' / 30', SIZE / 2, 760);
       ctx.fillStyle = '#333';
       ctx.font = '400 24px -apple-system, BlinkMacSystemFont, Arial, sans-serif';
       ctx.textAlign = 'right';
       ctx.fillText('amishitbro.com', SIZE - 40, SIZE - 40);
-
       canvas.toBlob(function(blob) {
         var url = URL.createObjectURL(blob);
         var a = document.createElement('a');
-        a.href = url;
-        a.download = 'amishitbro-result.png';
-        a.click();
-        URL.revokeObjectURL(url);
+        a.href = url; a.download = 'amishitbro-result.png';
+        a.click(); URL.revokeObjectURL(url);
       }, 'image/png');
+    }
+
+    function showScreen(id) {
+      document.querySelectorAll('.screen').forEach(function(s) { s.classList.remove('active'); });
+      document.getElementById(id).classList.add('active');
+      if (id === 'screen-closing') carouselGoTo(0);
     }
 
     var carouselIdx = 0;
@@ -1357,7 +1216,7 @@
     function carouselGoTo(idx) {
       var slides = document.querySelectorAll('.carousel-slide');
       if (!slides.length) return;
-      var dots   = document.querySelectorAll('.carousel-dot');
+      var dots = document.querySelectorAll('.carousel-dot');
       slides.forEach(function(s) { s.classList.remove('active'); });
       dots.forEach(function(d)   { d.classList.remove('active'); });
       carouselIdx = Math.max(0, Math.min(idx, slides.length - 1));
@@ -1367,9 +1226,7 @@
       document.getElementById('carousel-next').disabled = (carouselIdx === slides.length - 1);
     }
 
-    function carouselGo(dir) {
-      carouselGoTo(carouselIdx + dir);
-    }
+    function carouselGo(dir) { carouselGoTo(carouselIdx + dir); }
 
     function openBookModal() {
       document.getElementById('book-modal-overlay').classList.add('open');
@@ -1381,25 +1238,22 @@
       }
     }
 
-    // Swipe support for mobile
     (function() {
       var startX = null;
       document.addEventListener('touchstart', function(e) {
-        if (e.target.closest && e.target.closest('#screen-closing')) {
-          startX = e.touches[0].clientX;
-        }
+        if (e.target.closest && e.target.closest('#screen-closing')) startX = e.touches[0].clientX;
       }, { passive: true });
       document.addEventListener('touchend', function(e) {
         if (startX === null) return;
-        if (!document.getElementById('screen-closing').classList.contains('active')) {
-          startX = null;
-          return;
-        }
+        if (!document.getElementById('screen-closing').classList.contains('active')) { startX = null; return; }
         var dx = e.changedTouches[0].clientX - startX;
         if (Math.abs(dx) > 40) carouselGo(dx < 0 ? 1 : -1);
         startX = null;
       }, { passive: true });
     })();
+
+    currentLang = detectLang();
+    applyLang();
   </script>
 </body>
 </html>
