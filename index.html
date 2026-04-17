@@ -541,29 +541,29 @@
     }
 
     .carousel-arrow {
-      background: transparent;
-      border: 1px solid #2a2a3e;
-      color: #555;
-      width: 36px;
-      height: 36px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid #555;
+      color: #ccc;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
-      font-size: 1rem;
+      font-size: 1.2rem;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: border-color 0.15s, color 0.15s;
+      transition: border-color 0.15s, color 0.15s, background 0.15s;
       flex-shrink: 0;
     }
-    .carousel-arrow:hover { border-color: #555; color: #bbb; }
-    .carousel-arrow:disabled { opacity: 0.2; cursor: default; }
+    .carousel-arrow:hover { border-color: #e96fff; color: #fff; background: rgba(233,111,255,0.1); }
+    .carousel-arrow:disabled { opacity: 0.3; cursor: default; }
 
-    .carousel-dots { display: flex; gap: 6px; align-items: center; }
+    .carousel-dots { display: flex; gap: 8px; align-items: center; }
     .carousel-dot {
-      width: 6px;
-      height: 6px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
-      background: #2a2a3e;
+      background: #666;
       cursor: pointer;
       transition: background 0.2s, transform 0.2s;
     }
@@ -670,11 +670,11 @@
 
     <button class="btn-go" id="btn-go" onclick="beginQuiz()" data-i18n="profile.go">go! &#8594;</button>
 
-    <label id="brutal-toggle-wrap" style="display:flex;align-items:center;gap:8px;cursor:pointer;color:#555;font-size:0.8rem;letter-spacing:0.06em;user-select:none;margin-top:20px;">
-      <span style="position:relative;display:inline-block;width:36px;height:20px;">
+    <label id="brutal-toggle-wrap" style="display:flex;align-items:center;gap:10px;cursor:pointer;color:#aaa;font-size:0.85rem;letter-spacing:0.06em;user-select:none;margin-top:20px;">
+      <span style="position:relative;display:inline-block;width:40px;height:22px;">
         <input type="checkbox" id="brutal-checkbox" style="opacity:0;width:0;height:0;position:absolute;" onchange="updateBrutalToggle()">
-        <span id="brutal-track" style="position:absolute;inset:0;border-radius:20px;background:#1f2937;transition:background 0.2s;"></span>
-        <span id="brutal-thumb" style="position:absolute;top:3px;left:3px;width:14px;height:14px;border-radius:50%;background:#444;transition:transform 0.2s,background 0.2s;"></span>
+        <span id="brutal-track" style="position:absolute;inset:0;border-radius:22px;background:#3a3a4a;border:1px solid #555;transition:background 0.2s,border-color 0.2s;"></span>
+        <span id="brutal-thumb" style="position:absolute;top:3px;left:3px;width:14px;height:14px;border-radius:50%;background:#ccc;transition:transform 0.2s,background 0.2s;"></span>
       </span>
       <span data-i18n="landing.brutal">be brutal</span>
     </label>
@@ -889,7 +889,11 @@
         { text: 'Do you hear often: "well that is the shit of an argument"', badge: "MIRROR", answers: [{ label: "yeah", score: -1 }, { label: "nah", score: 1 }] },
         { text: 'Do you get sometimes: "hey, that is a secret you shit"', badge: "MIRROR", answers: [{ label: "yeah", score: -1 }, { label: "nah", score: 1 }] },
         { text: "Do you care at all about your shit friends?", badge: "MIRROR", answers: [{ label: "yeah", score: -1 }, { label: "can't tell", score: 0 }, { label: "nah", score: 1 }] },
-        { text: "Do you ever say sorry you shit?", badge: "MIRROR", answers: [{ label: "yeah", score: 1 }, { label: "not like that", score: -1 }] }
+        { text: "Do you ever say sorry you shit?", badge: "MIRROR", answers: [{ label: "yeah", score: 1 }, { label: "not like that", score: -1 }] },
+        { text: "Do you smile when you look down at your own shit, wondering is it shit, or is it not shit?", badge: "MIRROR", answers: [{ label: "yeah", score: -1 }, { label: "nah", score: 1 }] },
+        { text: "Do you feel like shit when somebody else is being a shit?", badge: "MIRROR", answers: [{ label: "yeah", score: 1 }, { label: "nah", score: 0 }] },
+        { text: "When your shit hits — does it hit another shit, or just nice people?", badge: "PROBABLY", answers: [{ label: "nice people", score: 1 }, { label: "others", score: 0 }, { label: "no idea", score: -1 }] },
+        { text: "Do you lie awake wondering if that shit will ever forgive you for being a shit that one time?", badge: "MIRROR", answers: [{ label: "yeah", score: 1 }, { label: "nah", score: 0 }] }
       ],
       sr: [
         { text: "Da li sakupljaš Tarzane u šumi između rupice i muda?", badge: "DEFINITELY", brutal: true, answers: [{ label: "da", score: 2 }, { label: "ne", score: 0 }] },
@@ -911,7 +915,11 @@
         { text: 'Da li često čuješ: "pa to je sranje od argumenta"?', badge: "MIRROR", answers: [{ label: "da", score: -1 }, { label: "ne", score: 1 }] },
         { text: 'Da li ti ponekad kažu: "hej, to je tajna, govno jedno"?', badge: "MIRROR", answers: [{ label: "da", score: -1 }, { label: "ne", score: 1 }] },
         { text: "Da li te uopšte briga za tvoje prijatelje koji su govna?", badge: "MIRROR", answers: [{ label: "da", score: -1 }, { label: "ne mogu da kažem", score: 0 }, { label: "ne", score: 1 }] },
-        { text: "Da li ikad kažeš izvini, govno jedno?", badge: "MIRROR", answers: [{ label: "da", score: 1 }, { label: "ne baš tako", score: -1 }] }
+        { text: "Da li ikad kažeš izvini, govno jedno?", badge: "MIRROR", answers: [{ label: "da", score: 1 }, { label: "ne baš tako", score: -1 }] },
+        { text: "Da li se smeješ kada gledaš svoj rad, razmišljajući da li je sranje, ili nije?", badge: "MIRROR", answers: [{ label: "da", score: -1 }, { label: "ne", score: 1 }] },
+        { text: "Da li se osećaš k'o govno kada je neko drugi govno?", badge: "MIRROR", answers: [{ label: "da", score: 1 }, { label: "ne", score: 0 }] },
+        { text: "Da li govnari udaraju na govnare, ili samo na dobre ljude?", badge: "PROBABLY", answers: [{ label: "dobre ljude", score: 1 }, { label: "govnare", score: 0 }, { label: "nemam pojma", score: -1 }] },
+        { text: "Da li ležiš nekada pitajući se da li će ti to govno oprostiti što si ispao/la govnar taj jedan put?", badge: "MIRROR", answers: [{ label: "da", score: 1 }, { label: "ne", score: 0 }] }
       ]
     };
 
@@ -942,12 +950,14 @@
       var thumb = document.getElementById('brutal-thumb');
       if (isBrutal) {
         track.style.background = '#e96fff';
-        thumb.style.transform = 'translateX(16px)';
+        track.style.borderColor = '#e96fff';
+        thumb.style.transform = 'translateX(18px)';
         thumb.style.background = '#fff';
       } else {
-        track.style.background = '#1f2937';
+        track.style.background = '#3a3a4a';
+        track.style.borderColor = '#555';
         thumb.style.transform = 'translateX(0)';
-        thumb.style.background = '#444';
+        thumb.style.background = '#ccc';
       }
     }
 
