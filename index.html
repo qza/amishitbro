@@ -18,6 +18,10 @@
   <meta name="twitter:title" content="Am I Shit Bro?">
   <meta name="twitter:description" content="A brutally honest personality quiz. Find out if you're shit, bro.">
   <meta name="twitter:image" content="https://qza.github.io/amishitbro/og-image.png">
+
+  <!-- GoatCounter analytics (cookieless, no PII, no consent banner required) -->
+  <script data-goatcounter="https://zeebrojungle.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -769,6 +773,24 @@
   </div>
 
   <script>
+    function track(name, extra) {
+      if (!window.goatcounter || !window.goatcounter.count) return;
+      window.goatcounter.count({ path: extra ? name + '/' + extra : name, event: true });
+    }
+
+    function kofiPlacement(el) {
+      if (el.closest('.book-modal-kofi, #book-modal')) return 'bookmodal';
+      if (el.closest('.carousel-kofi, #screen-closing')) return 'closing';
+      if (el.closest('#screen-result')) return 'result';
+      if (el.closest('#screen-landing')) return 'landing';
+      return 'other';
+    }
+
+    document.addEventListener('click', function(e) {
+      var a = e.target.closest && e.target.closest('a[href*="ko-fi.com"]');
+      if (a) track('kofi_click', kofiPlacement(a));
+    }, true);
+
     var STRINGS = {
       en: {
         'landing.title':    'AM I SHIT BRO?',
@@ -1198,6 +1220,7 @@
     }
 
     function startQuiz() {
+      track('quiz_start');
       userProfile = { gender: null, age: null, nick: null };
       profileStep = 'gender';
       document.getElementById('nick-input').value = '';
@@ -1267,6 +1290,7 @@
       ic.className = tier.cls;
       drawShit(ic, dims[0], dims[1], tier.stops);
       showScreen('screen-result');
+      track('quiz_complete');
     }
 
     function downloadCard() {
@@ -1356,6 +1380,11 @@
 
     currentLang = detectLang();
     applyLang();
+
+    (function() {
+      var src = new URLSearchParams(window.location.search).get('src');
+      if (src && /^[a-z0-9_-]{1,20}$/i.test(src)) track('src', src.toLowerCase());
+    })();
 
   </script>
   <div class="scroll-hint" id="scroll-hint">&#8964;&#8964;</div>
